@@ -20,7 +20,8 @@ workflow is more viable
 * The transformation from Guava code to this was not _entirely_ mechanical.
 * I did make some small changes to APIs and internals that are Java 8 specific.
 * I haven't ported over the unit tests
-* GWT, j2obc, j2kt, etc. are not things I care about or support
+* GWT, j2obc, j2kt, etc. are not things I care about or want to support.
+* Does not include any android specific code. Equivalent to the `-jre` build.
 * Compiled for Java 9+, not Java 8
 
 ## Usage
