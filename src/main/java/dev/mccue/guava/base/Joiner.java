@@ -28,9 +28,9 @@ import dev.mccue.jsr305.CheckForNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * An object which joins pieces of text (specified as an array, {@link Iterable}, varargs or even a
- * {@link Map}) with a separator. It either appends the results to an {@link Appendable} or returns
- * them as a {@link String}. Example:
+ * An object which joins pieces of text (specified as an array, {@code Iterable}, varargs or even a
+ * {@code Map}) with a separator. It either appends the results to an {@code Appendable} or returns
+ * them as a {@code String}. Example:
  *
  * <pre>{@code
  * Joiner joiner = Joiner.on("; ").skipNulls();
@@ -39,10 +39,10 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * }</pre>
  *
  * <p>This returns the string {@code "Harry; Ron; Hermione"}. Note that all input elements are
- * converted to strings using {@link Object#toString()} before being appended.
+ * converted to strings using {@code Object#toString()} before being appended.
  *
- * <p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is specified, the joining
- * methods will throw {@link NullPointerException} if any given element is null.
+ * <p>If neither {@code #skipNulls()} nor {@code #useForNull(String)} is specified, the joining
+ * methods will throw {@code NullPointerException} if any given element is null.
  *
  * <p><b>Warning: joiner instances are always immutable</b>; a configuration method such as {@code
  * useForNull} has no effect on the instance it is invoked on! You must store and use the new joiner
@@ -143,8 +143,8 @@ public class Joiner {
 
   /**
    * Appends the string representation of each of {@code parts}, using the previously configured
-   * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,
-   * Iterable)}, except that it does not throw {@link IOException}.
+   * separator between each, to {@code builder}. Identical to {@code #appendTo(Appendable,
+   * Iterable)}, except that it does not throw {@code IOException}.
    */
   @CanIgnoreReturnValue
   public final StringBuilder appendTo(
@@ -154,8 +154,8 @@ public class Joiner {
 
   /**
    * Appends the string representation of each of {@code parts}, using the previously configured
-   * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,
-   * Iterable)}, except that it does not throw {@link IOException}.
+   * separator between each, to {@code builder}. Identical to {@code #appendTo(Appendable,
+   * Iterable)}, except that it does not throw {@code IOException}.
    *
    * @since 11.0
    */
@@ -172,8 +172,8 @@ public class Joiner {
 
   /**
    * Appends the string representation of each of {@code parts}, using the previously configured
-   * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,
-   * Iterable)}, except that it does not throw {@link IOException}.
+   * separator between each, to {@code builder}. Identical to {@code #appendTo(Appendable,
+   * Iterable)}, except that it does not throw {@code IOException}.
    */
   @CanIgnoreReturnValue
   public final StringBuilder appendTo(StringBuilder builder, @Nullable Object[] parts) {
@@ -182,8 +182,8 @@ public class Joiner {
 
   /**
    * Appends to {@code builder} the string representation of each of the remaining arguments.
-   * Identical to {@link #appendTo(Appendable, Object, Object, Object...)}, except that it does not
-   * throw {@link IOException}.
+   * Identical to {@code #appendTo(Appendable, Object, Object, Object...)}, except that it does not
+   * throw {@code IOException}.
    */
   @CanIgnoreReturnValue
   public final StringBuilder appendTo(
@@ -349,8 +349,8 @@ public class Joiner {
 
     /**
      * Appends the string representation of each entry of {@code map}, using the previously
-     * configured separator and key-value separator, to {@code builder}. Identical to {@link
-     * #appendTo(Appendable, Map)}, except that it does not throw {@link IOException}.
+     * configured separator and key-value separator, to {@code builder}. Identical to {@code
+     * #appendTo(Appendable, Map)}, except that it does not throw {@code IOException}.
      */
     @CanIgnoreReturnValue
     public StringBuilder appendTo(StringBuilder builder, Map<?, ?> map) {
@@ -397,8 +397,8 @@ public class Joiner {
 
     /**
      * Appends the string representation of each entry in {@code entries}, using the previously
-     * configured separator and key-value separator, to {@code builder}. Identical to {@link
-     * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.
+     * configured separator and key-value separator, to {@code builder}. Identical to {@code
+     * #appendTo(Appendable, Iterable)}, except that it does not throw {@code IOException}.
      *
      * @since 10.0
      */
@@ -409,8 +409,8 @@ public class Joiner {
 
     /**
      * Appends the string representation of each entry in {@code entries}, using the previously
-     * configured separator and key-value separator, to {@code builder}. Identical to {@link
-     * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.
+     * configured separator and key-value separator, to {@code builder}. Identical to {@code
+     * #appendTo(Appendable, Iterable)}, except that it does not throw {@code IOException}.
      *
      * @since 11.0
      */

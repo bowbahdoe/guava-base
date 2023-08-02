@@ -18,9 +18,9 @@ import dev.mccue.jsr305.CheckForNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Legacy version of {@link java.util.function.Function java.util.function.Function}.
+ * Legacy version of {@code java.util.function.Function java.util.function.Function}.
  *
- * <p>The {@link Functions} class provides common functions and related utilities.
+ * <p>The {@code Functions} class provides common functions and related utilities.
  *
  * <p>As this interface extends {@code java.util.function.Function}, an instance of this type can be
  * used as a {@code java.util.function.Function} directly. To use a {@code

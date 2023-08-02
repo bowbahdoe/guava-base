@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 The Guava Authors
+ * Copyright (C) 2020 The Guava Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,23 +14,29 @@
 
 package dev.mccue.guava.base;
 
+import java.nio.Buffer;
 
 /**
- * The subset of the {@code java.util.regex.Matcher} API which is used by this package, and also
- * shared with the {@code re2j} library. For internal use only. Please refer to the {@code Matcher}
- * javadoc for details.
+ * Wrappers around {@code Buffer} methods that are covariantly overridden in Java 9+. See
+ * https://github.com/google/guava/issues/3990
  */
 @ElementTypesAreNonnullByDefault
-abstract class CommonMatcher {
-  public abstract boolean matches();
+final class Java8Compatibility {
+  static void clear(Buffer b) {
+    b.clear();
+  }
 
-  public abstract boolean find();
+  static void flip(Buffer b) {
+    b.flip();
+  }
 
-  public abstract boolean find(int index);
+  static void limit(Buffer b, int limit) {
+    b.limit(limit);
+  }
 
-  public abstract String replaceAll(String replacement);
+  static void position(Buffer b, int position) {
+    b.position(position);
+  }
 
-  public abstract int end();
-
-  public abstract int start();
+  private Java8Compatibility() {}
 }

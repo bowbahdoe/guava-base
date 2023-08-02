@@ -43,10 +43,10 @@ public final class Functions {
   /**
    * A function equivalent to the method reference {@code Object::toString}, for users not yet using
    * Java 8. The function simply invokes {@code toString} on its argument and returns the result. It
-   * throws a {@link NullPointerException} on null input.
+   * throws a {@code NullPointerException} on null input.
    *
    * <p><b>Warning:</b> The returned function may not be <i>consistent with equals</i> (as
-   * documented at {@link Function#apply}). For example, this function yields different results for
+   * documented at {@code Function#apply}). For example, this function yields different results for
    * the two equal instances {@code ImmutableSet.of(1, 2)} and {@code ImmutableSet.of(2, 1)}.
    *
    * <p><b>Warning:</b> as with all function types in this package, avoid depending on the specific
@@ -54,7 +54,7 @@ public final class Functions {
    * future migration to {@code java.util.function} will not preserve this behavior.
    *
    * <p><b>For Java 8 users:</b> use the method reference {@code Object::toString} instead. In the
-   * future, when this class requires Java 8, this method will be deprecated. See {@link Function}
+   * future, when this class requires Java 8, this method will be deprecated. See {@code Function}
    * for more important information about the Java 8 transition.
    */
   public static Function<Object, String> toStringFunction() {
@@ -106,12 +106,12 @@ public final class Functions {
   }
 
   /**
-   * Returns a function which performs a map lookup. The returned function throws an {@link
-   * IllegalArgumentException} if given a key that does not exist in the map. See also {@link
+   * Returns a function which performs a map lookup. The returned function throws an {@code
+   * IllegalArgumentException} if given a key that does not exist in the map. See also {@code
    * #forMap(Map, Object)}, which returns a default value in this case.
    *
-   * <p>Note: if {@code map} is a {@code BiMap} (or can be one), you
-   * can use {@code Maps.asConverter} instead to get a
+   * <p>Note: if {@code map} is a {@code dev.mccue.guava.collect.BiMap BiMap} (or can be one), you
+   * can use {@code dev.mccue.guava.collect.Maps#asConverter Maps.asConverter} instead to get a
    * function that also supports reverse conversion.
    *
    * <p><b>Java 8 users:</b> if you are okay with {@code null} being returned for an unrecognized
@@ -126,7 +126,7 @@ public final class Functions {
   /**
    * Returns a function which performs a map lookup with a default value. The function created by
    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key
-   * set. See also {@link #forMap(Map)}, which throws an exception in this case.
+   * set. See also {@code #forMap(Map)}, which throws an exception in this case.
    *
    * <p><b>Java 8 users:</b> you can just write the lambda expression {@code k ->
    * map.getOrDefault(k, defaultValue)} instead.
@@ -284,7 +284,7 @@ public final class Functions {
   /**
    * Creates a function that returns the same boolean output as the given predicate for all inputs.
    *
-   * <p>The returned function is <i>consistent with equals</i> (as documented at {@link
+   * <p>The returned function is <i>consistent with equals</i> (as documented at {@code
    * Function#apply}) if and only if {@code predicate} is itself consistent with equals.
    *
    * <p><b>Java 8 users:</b> use the method reference {@code predicate::test} instead.

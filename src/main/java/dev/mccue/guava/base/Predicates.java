@@ -16,7 +16,6 @@ package dev.mccue.guava.base;
 
 import static dev.mccue.guava.base.Preconditions.checkNotNull;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,6 +36,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @author Kevin Bourrillion
  * @since 2.0
  */
+
 @ElementTypesAreNonnullByDefault
 public final class Predicates {
   private Predicates() {}
@@ -45,11 +45,13 @@ public final class Predicates {
   // interface which specifies an accept(PredicateVisitor) method.
 
   /** Returns a predicate that always evaluates to {@code true}. */
+  
   public static <T extends @Nullable Object> Predicate<T> alwaysTrue() {
     return ObjectPredicate.ALWAYS_TRUE.withNarrowedType();
   }
 
   /** Returns a predicate that always evaluates to {@code false}. */
+  
   public static <T extends @Nullable Object> Predicate<T> alwaysFalse() {
     return ObjectPredicate.ALWAYS_FALSE.withNarrowedType();
   }
@@ -58,6 +60,7 @@ public final class Predicates {
    * Returns a predicate that evaluates to {@code true} if the object reference being tested is
    * null.
    */
+  
   public static <T extends @Nullable Object> Predicate<T> isNull() {
     return ObjectPredicate.IS_NULL.withNarrowedType();
   }
@@ -66,6 +69,7 @@ public final class Predicates {
    * Returns a predicate that evaluates to {@code true} if the object reference being tested is not
    * null.
    */
+  
   public static <T extends @Nullable Object> Predicate<T> notNull() {
     return ObjectPredicate.NOT_NULL.withNarrowedType();
   }
@@ -165,10 +169,11 @@ public final class Predicates {
    * dev.mccue.guava.collect.Iterables#filter(Iterable, Class)} in preference.
    *
    * <p><b>Warning:</b> contrary to the typical assumptions about predicates (as documented at
-   * {@link Predicate#apply}), the returned predicate may not be <i>consistent with equals</i>. For
+   * {@code Predicate#apply}), the returned predicate may not be <i>consistent with equals</i>. For
    * example, {@code instanceOf(ArrayList.class)} will yield different results for the two equal
    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.
    */
+  // Class.isInstance
   public static <T extends @Nullable Object> Predicate<T> instanceOf(Class<?> clazz) {
     return new InstanceOfPredicate<>(clazz);
   }
@@ -187,6 +192,7 @@ public final class Predicates {
    *
    * @since 20.0 (since 10.0 under the incorrect name {@code assignableFrom})
    */
+  // Class.isAssignableFrom
   public static Predicate<Class<?>> subtypeOf(Class<?> clazz) {
     return new SubtypeOfPredicate(clazz);
   }
@@ -225,6 +231,7 @@ public final class Predicates {
    * @throws IllegalArgumentException if the pattern is invalid
    * @since 3.0
    */
+  // Only used by other GWT-incompatible code.
   public static Predicate<CharSequence> containsPattern(String pattern) {
     return new ContainsPatternFromStringPredicate(pattern);
   }
@@ -477,6 +484,7 @@ public final class Predicates {
   /**
    * @see Predicates#instanceOf(Class)
    */
+  // Class.isInstance
   private static class InstanceOfPredicate<T extends @Nullable Object>
       implements Predicate<T>, Serializable {
     private final Class<?> clazz;
@@ -515,6 +523,7 @@ public final class Predicates {
   /**
    * @see Predicates#subtypeOf(Class)
    */
+  // Class.isAssignableFrom
   private static class SubtypeOfPredicate implements Predicate<Class<?>>, Serializable {
     private final Class<?> clazz;
 
@@ -631,6 +640,7 @@ public final class Predicates {
   /**
    * @see Predicates#contains(Pattern)
    */
+  // Only used by other GWT-incompatible code.
   private static class ContainsPatternPredicate implements Predicate<CharSequence>, Serializable {
     final CommonPattern pattern;
 
@@ -680,6 +690,7 @@ public final class Predicates {
   /**
    * @see Predicates#containsPattern(String)
    */
+  // Only used by other GWT-incompatible code.
   private static class ContainsPatternFromStringPredicate extends ContainsPatternPredicate {
 
     ContainsPatternFromStringPredicate(String string) {
@@ -700,7 +711,6 @@ public final class Predicates {
     return Arrays.<Predicate<? super T>>asList(first, second);
   }
 
-  @SafeVarargs
   private static <T> List<T> defensiveCopy(T... array) {
     return defensiveCopy(Arrays.asList(array));
   }

@@ -17,7 +17,7 @@ package dev.mccue.guava.base;
 
 /**
  * Pluggable interface for compiling a regex pattern. By default this package uses the {@code
- * java.util.regex} library, but an alternate implementation can be supplied using the {@link
+ * java.util.regex} library, but an alternate implementation can be supplied using the {@code
  * java.util.ServiceLoader} mechanism.
  */
 @ElementTypesAreNonnullByDefault

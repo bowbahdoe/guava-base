@@ -30,7 +30,7 @@ import dev.mccue.jsr305.CheckForNull;
  * to {@code A}; used for converting back and forth between <i>different representations of the same
  * information</i>.
  *
- * <h2>Invertibility</h2>
+ * <h3>Invertibility</h3>
  *
  * <p>The reverse operation <b>may</b> be a strict <i>inverse</i> (meaning that {@code
  * converter.reverse().convert(converter.convert(a)).equals(a)} is always true). However, it is very
@@ -51,8 +51,8 @@ import dev.mccue.jsr305.CheckForNull;
  * <p>A converter always converts {@code null} to {@code null} and non-null references to non-null
  * references. It would not make sense to consider {@code null} and a non-null reference to be
  * "different representations of the same information", since one is distinguishable from
- * <i>missing</i> information and the other is not. The {@link #convert} method handles this null
- * behavior for all converters; implementations of {@link #doForward} and {@link #doBackward} are
+ * <i>missing</i> information and the other is not. The {@code #convert} method handles this null
+ * behavior for all converters; implementations of {@code #doForward} and {@code #doBackward} are
  * guaranteed to never be passed {@code null}, and must never return {@code null}.
  *
  * <h3>Common ways to use</h3>
@@ -60,16 +60,16 @@ import dev.mccue.jsr305.CheckForNull;
  * <p>Getting a converter:
  *
  * <ul>
- *   <li>Use a provided converter implementation, such as {@link Enums#stringConverter}, {@code
- *       dev.mccue.guava.primitives.Ints#stringConverter Ints.stringConverter} or the {@linkplain
+ *   <li>Use a provided converter implementation, such as {@code Enums#stringConverter}, {@code
+ *       dev.mccue.guava.primitives.Ints#stringConverter Ints.stringConverter} or the {@code
  *       #reverse reverse} views of these.
  *   <li>Convert between specific preset values using {@code
  *       dev.mccue.guava.collect.Maps#asConverter Maps.asConverter}. For example, use this to
  *       create a "fake" converter for a unit test. It is unnecessary (and confusing) to <i>mock</i>
  *       the {@code Converter} type using a mocking framework.
- *   <li>Extend this class and implement its {@link #doForward} and {@link #doBackward} methods.
+ *   <li>Extend this class and implement its {@code #doForward} and {@code #doBackward} methods.
  *   <li><b>Java 8 users:</b> you may prefer to pass two lambda expressions or method references to
- *       the {@link #from from} factory method.
+ *       the {@code #from from} factory method.
  * </ul>
  *
  * <p>Using a converter:
@@ -79,10 +79,10 @@ import dev.mccue.jsr305.CheckForNull;
  *   <li>Convert multiple instances "forward" using {@code converter.convertAll(as)}.
  *   <li>Convert in the "backward" direction using {@code converter.reverse().convert(b)} or {@code
  *       converter.reverse().convertAll(bs)}.
- *   <li>Use {@code converter} or {@code converter.reverse()} anywhere a {@link
- *       java.util.function.Function} is accepted (for example {@link java.util.stream.Stream#map
+ *   <li>Use {@code converter} or {@code converter.reverse()} anywhere a {@code
+ *       java.util.function.Function} is accepted (for example {@code java.util.stream.Stream#map
  *       Stream.map}).
- *   <li><b>Do not</b> call {@link #doForward} or {@link #doBackward} directly; these exist only to
+ *   <li><b>Do not</b> call {@code #doForward} or {@code #doBackward} directly; these exist only to
  *       be overridden.
  * </ul>
  *
@@ -157,7 +157,7 @@ public abstract class Converter<A, B> implements Function<A, B> {
 
   /**
    * Returns a representation of {@code a} as an instance of type {@code B}. If {@code a} cannot be
-   * converted, an unchecked exception (such as {@link IllegalArgumentException}) should be thrown.
+   * converted, an unchecked exception (such as {@code IllegalArgumentException}) should be thrown.
    *
    * @param a the instance to convert; will never be null
    * @return the converted instance; <b>must not</b> be null
@@ -167,14 +167,14 @@ public abstract class Converter<A, B> implements Function<A, B> {
 
   /**
    * Returns a representation of {@code b} as an instance of type {@code A}. If {@code b} cannot be
-   * converted, an unchecked exception (such as {@link IllegalArgumentException}) should be thrown.
+   * converted, an unchecked exception (such as {@code IllegalArgumentException}) should be thrown.
    *
    * @param b the instance to convert; will never be null
    * @return the converted instance; <b>must not</b> be null
    * @throws UnsupportedOperationException if backward conversion is not implemented; this should be
    *     very rare. Note that if backward conversion is not only unimplemented but
    *     unimplement<i>able</i> (for example, consider a {@code Converter<Chicken, ChickenNugget>}),
-   *     then this is not logically a {@code Converter} at all, and should just implement {@link
+   *     then this is not logically a {@code Converter} at all, and should just implement {@code
    *     Function}.
    */
   @ForOverride
@@ -449,7 +449,7 @@ public abstract class Converter<A, B> implements Function<A, B> {
   }
 
   /**
-   * @deprecated Provided to satisfy the {@code Function} interface; use {@link #convert} instead.
+   * @deprecated Provided to satisfy the {@code Function} interface; use {@code #convert} instead.
    */
   @Deprecated
   @Override
@@ -479,9 +479,9 @@ public abstract class Converter<A, B> implements Function<A, B> {
   /**
    * Indicates whether another object is equal to this converter.
    *
-   * <p>Most implementations will have no reason to override the behavior of {@link Object#equals}.
+   * <p>Most implementations will have no reason to override the behavior of {@code Object#equals}.
    * However, an implementation may also choose to return {@code true} whenever {@code object} is a
-   * {@link Converter} that it considers <i>interchangeable</i> with this one. "Interchangeable"
+   * {@code Converter} that it considers <i>interchangeable</i> with this one. "Interchangeable"
    * <i>typically</i> means that {@code Objects.equal(this.convert(a), that.convert(a))} is true for
    * all {@code a} of type {@code A} (and similarly for {@code reverse}). Note that a {@code false}
    * result from this method does not imply that the converters are known <i>not</i> to be
@@ -498,11 +498,11 @@ public abstract class Converter<A, B> implements Function<A, B> {
    * Returns a converter based on separate forward and backward functions. This is useful if the
    * function instances already exist, or so that you can supply lambda expressions. If those
    * circumstances don't apply, you probably don't need to use this; subclass {@code Converter} and
-   * implement its {@link #doForward} and {@link #doBackward} methods directly.
+   * implement its {@code #doForward} and {@code #doBackward} methods directly.
    *
    * <p>These functions will never be passed {@code null} and must not under any circumstances
    * return {@code null}. If a value cannot be converted, the function should throw an unchecked
-   * exception (typically, but not necessarily, {@link IllegalArgumentException}).
+   * exception (typically, but not necessarily, {@code IllegalArgumentException}).
    *
    * <p>The returned converter is serializable if both provided functions are.
    *

@@ -16,21 +16,9 @@ package dev.mccue.guava.base;
 
 
 /**
- * The subset of the {@code java.util.regex.Matcher} API which is used by this package, and also
- * shared with the {@code re2j} library. For internal use only. Please refer to the {@code Matcher}
- * javadoc for details.
+ * Holder for extra methods of {@code Objects} only in web. Intended to be empty for regular
+ * version.
  */
+
 @ElementTypesAreNonnullByDefault
-abstract class CommonMatcher {
-  public abstract boolean matches();
-
-  public abstract boolean find();
-
-  public abstract boolean find(int index);
-
-  public abstract String replaceAll(String replacement);
-
-  public abstract int end();
-
-  public abstract int start();
-}
+abstract class ExtraObjectsMethodsForWeb {}

@@ -17,11 +17,12 @@ package dev.mccue.guava.base;
 import dev.mccue.jsr305.CheckForNull;
 
 /**
- * Represents a {@linkplain System#getProperties() standard system property}.
+ * Represents a {@code System#getProperties() standard system property}.
  *
  * @author Kurt Alfred Kluever
  * @since 15.0
  */
+// java.lang.System#getProperty
 @ElementTypesAreNonnullByDefault
 public enum StandardSystemProperty {
 
@@ -129,17 +130,17 @@ public enum StandardSystemProperty {
   }
 
   /**
-   * Returns the current value for this system property by delegating to {@link
+   * Returns the current value for this system property by delegating to {@code
    * System#getProperty(String)}.
    *
    * <p>The value returned by this method is non-null except in rare circumstances:
    *
    * <ul>
-   *   <li>{@link #JAVA_EXT_DIRS} was deprecated in Java 8 and removed in Java 9. We have not
+   *   <li>{@code #JAVA_EXT_DIRS} was deprecated in Java 8 and removed in Java 9. We have not
    *       confirmed whether it is available under older versions.
-   *   <li>{@link #JAVA_COMPILER}, while still listed as required as of Java 15, is typically not
+   *   <li>{@code #JAVA_COMPILER}, while still listed as required as of Java 15, is typically not
    *       available even under older version.
-   *   <li>Any property may be cleared through APIs like {@link System#clearProperty}.
+   *   <li>Any property may be cleared through APIs like {@code System#clearProperty}.
    *   <li>Unusual environments like GWT may have their own special handling of system properties.
    * </ul>
    *

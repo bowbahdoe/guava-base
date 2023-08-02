@@ -27,7 +27,7 @@ import java.util.OptionalLong;
 import dev.mccue.jsr305.CheckForNull;
 
 /**
- * Helper functions that operate on any {@code Object}, and are not already provided in {@link
+ * Helper functions that operate on any {@code Object}, and are not already provided in {@code
  * java.util.Objects}.
  *
  * <p>See the Guava User Guide on <a
@@ -41,15 +41,15 @@ import dev.mccue.jsr305.CheckForNull;
 public final class MoreObjects {
   /**
    * Returns the first of two given parameters that is not {@code null}, if either is, or otherwise
-   * throws a {@link NullPointerException}.
+   * throws a {@code NullPointerException}.
    *
    * <p>To find the first non-null element in an iterable, use {@code Iterables.find(iterable,
    * Predicates.notNull())}. For varargs, use {@code Iterables.find(Arrays.asList(a, b, c, ...),
    * Predicates.notNull())}, static importing as necessary.
    *
-   * <p><b>Note:</b> if {@code first} is represented as an {@link Optional}, this can be
-   * accomplished with {@link Optional#or(Object) first.or(second)}. That approach also allows for
-   * lazy evaluation of the fallback instance, using {@link Optional#or(Supplier)
+   * <p><b>Note:</b> if {@code first} is represented as an {@code Optional}, this can be
+   * accomplished with {@code Optional#or(Object) first.or(second)}. That approach also allows for
+   * lazy evaluation of the fallback instance, using {@code Optional#or(Supplier)
    * first.or(supplier)}.
    *
    * <p><b>Java 9 users:</b> use {@code java.util.Objects.requireNonNullElse(first, second)}
@@ -70,9 +70,9 @@ public final class MoreObjects {
   }
 
   /**
-   * Creates an instance of {@link ToStringHelper}.
+   * Creates an instance of {@code ToStringHelper}.
    *
-   * <p>This is helpful for implementing {@link Object#toString()}. Specification by example:
+   * <p>This is helpful for implementing {@code Object#toString()}. Specification by example:
    *
    * <pre>{@code
    * // Returns "ClassName{}"
@@ -114,13 +114,13 @@ public final class MoreObjects {
   }
 
   /**
-   * Creates an instance of {@link ToStringHelper} in the same manner as {@link
+   * Creates an instance of {@code ToStringHelper} in the same manner as {@code
    * #toStringHelper(Object)}, but using the simple name of {@code clazz} instead of using an
-   * instance's {@link Object#getClass()}.
+   * instance's {@code Object#getClass()}.
    *
    * <p>Note that in GWT, class names are often obfuscated.
    *
-   * @param clazz the {@link Class} of the instance
+   * @param clazz the {@code Class} of the instance
    * @since 18.0 (since 7.0 as {@code Objects.toStringHelper()}).
    */
   public static ToStringHelper toStringHelper(Class<?> clazz) {
@@ -128,8 +128,8 @@ public final class MoreObjects {
   }
 
   /**
-   * Creates an instance of {@link ToStringHelper} in the same manner as {@link
-   * #toStringHelper(Object)}, but using {@code className} instead of using an instance's {@link
+   * Creates an instance of {@code ToStringHelper} in the same manner as {@code
+   * #toStringHelper(Object)}, but using {@code className} instead of using an instance's {@code
    * Object#getClass()}.
    *
    * @param className the name of the instance type
@@ -140,7 +140,7 @@ public final class MoreObjects {
   }
 
   /**
-   * Support class for {@link MoreObjects#toStringHelper}.
+   * Support class for {@code MoreObjects#toStringHelper}.
    *
    * @author Jason Lee
    * @since 18.0 (since 2.0 as {@code Objects.ToStringHelper}).
@@ -152,13 +152,13 @@ public final class MoreObjects {
     private boolean omitNullValues = false;
     private boolean omitEmptyValues = false;
 
-    /** Use {@link MoreObjects#toStringHelper(Object)} to create an instance. */
+    /** Use {@code MoreObjects#toStringHelper(Object)} to create an instance. */
     private ToStringHelper(String className) {
       this.className = checkNotNull(className);
     }
 
     /**
-     * Configures the {@link ToStringHelper} so {@link #toString()} will ignore properties with null
+     * Configures the {@code ToStringHelper} so {@code #toString()} will ignore properties with null
      * value. The order of calling this method, relative to the {@code add()}/{@code addValue()}
      * methods, is not significant.
      *
@@ -172,7 +172,7 @@ public final class MoreObjects {
 
     /**
      * Adds a name/value pair to the formatted output in {@code name=value} format. If {@code value}
-     * is {@code null}, the string {@code "null"} is used, unless {@link #omitNullValues()} is
+     * is {@code null}, the string {@code "null"} is used, unless {@code #omitNullValues()} is
      * called, in which case this name/value pair will not be added.
      */
     @CanIgnoreReturnValue
@@ -243,7 +243,7 @@ public final class MoreObjects {
     /**
      * Adds an unnamed value to the formatted output.
      *
-     * <p>It is strongly encouraged to use {@link #add(String, Object)} instead and give value a
+     * <p>It is strongly encouraged to use {@code #add(String, Object)} instead and give value a
      * readable name.
      */
     @CanIgnoreReturnValue
@@ -254,7 +254,7 @@ public final class MoreObjects {
     /**
      * Adds an unnamed value to the formatted output.
      *
-     * <p>It is strongly encouraged to use {@link #add(String, boolean)} instead and give value a
+     * <p>It is strongly encouraged to use {@code #add(String, boolean)} instead and give value a
      * readable name.
      *
      * @since 18.0 (since 11.0 as {@code Objects.ToStringHelper.addValue()}).
@@ -267,7 +267,7 @@ public final class MoreObjects {
     /**
      * Adds an unnamed value to the formatted output.
      *
-     * <p>It is strongly encouraged to use {@link #add(String, char)} instead and give value a
+     * <p>It is strongly encouraged to use {@code #add(String, char)} instead and give value a
      * readable name.
      *
      * @since 18.0 (since 11.0 as {@code Objects.ToStringHelper.addValue()}).
@@ -280,7 +280,7 @@ public final class MoreObjects {
     /**
      * Adds an unnamed value to the formatted output.
      *
-     * <p>It is strongly encouraged to use {@link #add(String, double)} instead and give value a
+     * <p>It is strongly encouraged to use {@code #add(String, double)} instead and give value a
      * readable name.
      *
      * @since 18.0 (since 11.0 as {@code Objects.ToStringHelper.addValue()}).
@@ -293,7 +293,7 @@ public final class MoreObjects {
     /**
      * Adds an unnamed value to the formatted output.
      *
-     * <p>It is strongly encouraged to use {@link #add(String, float)} instead and give value a
+     * <p>It is strongly encouraged to use {@code #add(String, float)} instead and give value a
      * readable name.
      *
      * @since 18.0 (since 11.0 as {@code Objects.ToStringHelper.addValue()}).
@@ -306,7 +306,7 @@ public final class MoreObjects {
     /**
      * Adds an unnamed value to the formatted output.
      *
-     * <p>It is strongly encouraged to use {@link #add(String, int)} instead and give value a
+     * <p>It is strongly encouraged to use {@code #add(String, int)} instead and give value a
      * readable name.
      *
      * @since 18.0 (since 11.0 as {@code Objects.ToStringHelper.addValue()}).
@@ -319,7 +319,7 @@ public final class MoreObjects {
     /**
      * Adds an unnamed value to the formatted output.
      *
-     * <p>It is strongly encouraged to use {@link #add(String, long)} instead and give value a
+     * <p>It is strongly encouraged to use {@code #add(String, long)} instead and give value a
      * readable name.
      *
      * @since 18.0 (since 11.0 as {@code Objects.ToStringHelper.addValue()}).
@@ -354,7 +354,7 @@ public final class MoreObjects {
     }
 
     /**
-     * Returns a string in the format specified by {@link MoreObjects#toStringHelper(Object)}.
+     * Returns a string in the format specified by {@code MoreObjects#toStringHelper(Object)}.
      *
      * <p>After calling this method, you can keep adding more properties to later call toString()
      * again and get a more complete representation of the same object; but properties cannot be

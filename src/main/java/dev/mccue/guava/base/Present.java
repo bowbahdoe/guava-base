@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Set;
 import dev.mccue.jsr305.CheckForNull;
 
-/** Implementation of an {@link Optional} containing a reference. */
+/** Implementation of an {@code Optional} containing a reference. */
 @ElementTypesAreNonnullByDefault
 final class Present<T> extends Optional<T> {
   private final T reference;

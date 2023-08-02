@@ -17,8 +17,8 @@ package dev.mccue.guava.base;
 import java.lang.ref.WeakReference;
 import java.util.Locale;
 import java.util.ServiceConfigurationError;
-import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
+import java.lang.System.Logger;
 import java.util.regex.Pattern;
 import dev.mccue.jsr305.CheckForNull;
 
@@ -27,6 +27,7 @@ import dev.mccue.jsr305.CheckForNull;
  *
  * @author Jesse Wilson
  */
+
 @ElementTypesAreNonnullByDefault
 final class Platform {
   private static final Logger logger = System.getLogger(Platform.class.getName());

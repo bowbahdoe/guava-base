@@ -14,12 +14,11 @@
 
 package dev.mccue.guava.base;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/** A regex pattern implementation which is backed by the {@link Pattern}. */
+/** A regex pattern implementation which is backed by the {@code Pattern}. */
 @ElementTypesAreNonnullByDefault
 final class JdkPattern extends CommonPattern implements Serializable {
   private final Pattern pattern;
@@ -86,6 +85,5 @@ final class JdkPattern extends CommonPattern implements Serializable {
     }
   }
 
-  @Serial
   private static final long serialVersionUID = 0;
 }

@@ -24,7 +24,7 @@ import dev.mccue.jsr305.CheckForNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Note this class is a copy of {@code com.google.common.collect.AbstractIterator} (for dependency
+ * Note this class is a copy of {@code dev.mccue.guava.collect.AbstractIterator} (for dependency
  * reasons).
  */
 @ElementTypesAreNonnullByDefault

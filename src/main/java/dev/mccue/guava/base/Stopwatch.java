@@ -33,13 +33,13 @@ import java.util.concurrent.TimeUnit;
  * successive readings of "now" in the same process.
  *
  * <p>In contrast, <i>wall time</i> is a reading of "now" as given by a method like
- * {@link System#currentTimeMillis()}, best represented as an {@link java.time.Instant}. Such values
+ * {@code System#currentTimeMillis()}, best represented as an {@code java.time.Instant}. Such values
  * <i>can</i> be subtracted to obtain a {@code Duration} (such as by {@code Duration.between}), but
  * doing so does <i>not</i> give a reliable measurement of elapsed time, because wall time readings
  * are inherently approximate, routinely affected by periodic clock corrections. Because this class
- * (by default) uses {@link System#nanoTime}, it is unaffected by these changes.
+ * (by default) uses {@code System#nanoTime}, it is unaffected by these changes.
  *
- * <p>Use this class instead of direct calls to {@link System#nanoTime} for two reasons:
+ * <p>Use this class instead of direct calls to {@code System#nanoTime} for two reasons:
  *
  * <ul>
  *   <li>The raw {@code long} values returned by {@code nanoTime} are meaningless and unsafe to use
@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
  *       performance reasons, without affecting most of your code.
  * </ul>
  *
- * <p>The one downside of {@code Stopwatch} relative to {@link System#nanoTime()} is that {@code
+ * <p>The one downside of {@code Stopwatch} relative to {@code System#nanoTime()} is that {@code
  * Stopwatch} requires object allocation and additional method calls, which can reduce the accuracy
  * of the elapsed times reported. {@code Stopwatch} is still suitable for logging and metrics where
  * reasonably accurate values are sufficient. If the uncommon case that you need to maximize
@@ -63,13 +63,13 @@ import java.util.concurrent.TimeUnit;
  *
  * Duration duration = stopwatch.elapsed();
  *
- * log.info("time: " + stopwatch); // formatted string like "12.3 ms"
+ * log.log(java.lang.System.Logger.Level.INFO, "time: " + stopwatch); // formatted string like "12.3 ms"
  * }</pre>
  *
  * <p>The state-changing methods are not idempotent; it is an error to start or stop a stopwatch
  * that is already in the desired state.
  *
- * <p>When testing code that uses this class, use {@link #createUnstarted(Ticker)} or {@link
+ * <p>When testing code that uses this class, use {@code #createUnstarted(Ticker)} or {@code
  * #createStarted(Ticker)} to supply a fake or mock ticker. This allows you to simulate any valid
  * behavior of the stopwatch.
  *
@@ -90,6 +90,7 @@ import java.util.concurrent.TimeUnit;
  * @author Kevin Bourrillion
  * @since 10.0
  */
+
 @SuppressWarnings("GoodTime") // lots of violations
 @ElementTypesAreNonnullByDefault
 public final class Stopwatch {
@@ -99,7 +100,7 @@ public final class Stopwatch {
   private long startTick;
 
   /**
-   * Creates (but does not start) a new stopwatch using {@link System#nanoTime} as its time source.
+   * Creates (but does not start) a new stopwatch using {@code System#nanoTime} as its time source.
    *
    * @since 15.0
    */
@@ -117,7 +118,7 @@ public final class Stopwatch {
   }
 
   /**
-   * Creates (and starts) a new stopwatch using {@link System#nanoTime} as its time source.
+   * Creates (and starts) a new stopwatch using {@code System#nanoTime} as its time source.
    *
    * @since 15.0
    */
@@ -143,7 +144,7 @@ public final class Stopwatch {
   }
 
   /**
-   * Returns {@code true} if {@link #start()} has been called on this stopwatch, and {@link #stop()}
+   * Returns {@code true} if {@code #start()} has been called on this stopwatch, and {@code #stop()}
    * has not been called since the last call to {@code start()}.
    */
   public boolean isRunning() {
@@ -201,10 +202,10 @@ public final class Stopwatch {
    * with any fraction rounded down.
    *
    * <p><b>Note:</b> the overhead of measurement can be more than a microsecond, so it is generally
-   * not useful to specify {@link TimeUnit#NANOSECONDS} precision here.
+   * not useful to specify {@code TimeUnit#NANOSECONDS} precision here.
    *
    * <p>It is generally not a good idea to use an ambiguous, unitless {@code long} to represent
-   * elapsed time. Therefore, we recommend using {@link #elapsed()} instead, which returns a
+   * elapsed time. Therefore, we recommend using {@code #elapsed()} instead, which returns a
    * strongly-typed {@code Duration} instance.
    *
    * @since 14.0 (since 10.0 as {@code elapsedTime()})
@@ -214,7 +215,7 @@ public final class Stopwatch {
   }
 
   /**
-   * Returns the current elapsed time shown on this stopwatch as a {@link Duration}. Unlike {@link
+   * Returns the current elapsed time shown on this stopwatch as a {@code Duration}. Unlike {@code
    * #elapsed(TimeUnit)}, this method does not lose any precision due to rounding.
    *
    * @since 22.0

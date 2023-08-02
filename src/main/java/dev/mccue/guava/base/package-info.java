@@ -25,35 +25,35 @@
  * <h3>String utilities</h3>
  *
  * <ul>
- *   <li>{@link Ascii}
- *   <li>{@link CaseFormat}
- *   <li>{@link CharMatcher}
- *   <li>{@link Splitter}
- *   <li>{@link Strings}
+ *   <li>{@code Ascii}
+ *   <li>{@code CaseFormat}
+ *   <li>{@code CharMatcher}
+ *   <li>{@code Splitter}
+ *   <li>{@code Strings}
  * </ul>
  *
  * <h3>Function types</h3>
  *
  * <ul>
- *   <li>{@link Converter}
- *   <li>{@link Equivalence}
+ *   <li>{@code Converter}
+ *   <li>{@code Equivalence}
  * </ul>
  *
  * <h3>Other</h3>
  *
  * <ul>
- *   <li>{@link Enums}
- *   <li>{@link MoreObjects}
- *   <li>{@link Preconditions}
- *   <li>{@link StandardSystemProperty}
- *   <li>{@link Stopwatch}
- *   <li>{@link Throwables}
- *   <li>{@link Verify}
+ *   <li>{@code Enums}
+ *   <li>{@code MoreObjects}
+ *   <li>{@code Preconditions}
+ *   <li>{@code StandardSystemProperty}
+ *   <li>{@code Stopwatch}
+ *   <li>{@code Throwables}
+ *   <li>{@code Verify}
  * </ul>
  *
  * <h3>The rest</h3>
  *
- * This package also contains some classes with niche use cases (e.g., {@link Utf8} and {@link
+ * This package also contains some classes with niche use cases (e.g., {@code Utf8} and {@code
  * Defaults}), as well as a number of classes that have been superseded by additions to the JDK.
  */
 @CheckReturnValue

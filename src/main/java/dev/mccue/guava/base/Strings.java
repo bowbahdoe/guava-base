@@ -20,6 +20,7 @@ import static java.lang.System.Logger.Level.WARNING;
 
 import com.google.errorprone.annotations.InlineMe;
 import com.google.errorprone.annotations.InlineMeValidationDisabled;
+import java.lang.System.Logger;
 import dev.mccue.jsr305.CheckForNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -57,10 +58,10 @@ public final class Strings {
   /**
    * Returns {@code true} if the given string is null or is the empty string.
    *
-   * <p>Consider normalizing your string references with {@link #nullToEmpty}. If you do, you can
-   * use {@link String#isEmpty()} instead of this method, and you won't need special null-safe forms
-   * of methods like {@link String#toUpperCase} either. Or, if you'd like to normalize "in the other
-   * direction," converting empty strings to {@code null}, you can use {@link #emptyToNull}.
+   * <p>Consider normalizing your string references with {@code #nullToEmpty}. If you do, you can
+   * use {@code String#isEmpty()} instead of this method, and you won't need special null-safe forms
+   * of methods like {@code String#toUpperCase} either. Or, if you'd like to normalize "in the other
+   * direction," converting empty strings to {@code null}, you can use {@code #emptyToNull}.
    *
    * @param string a string reference to check
    * @return {@code true} if the string is null or is the empty string
@@ -78,7 +79,7 @@ public final class Strings {
    *   <li>{@code padStart("2010", 3, '0')} returns {@code "2010"}
    * </ul>
    *
-   * <p>See {@link java.util.Formatter} for a richer set of formatting capabilities.
+   * <p>See {@code java.util.Formatter} for a richer set of formatting capabilities.
    *
    * @param string the string which should appear at the end of the result
    * @param minLength the minimum length the resulting string must have. Can be zero or negative, in
@@ -109,7 +110,7 @@ public final class Strings {
    *   <li>{@code padEnd("2010", 3, '!')} returns {@code "2010"}
    * </ul>
    *
-   * <p>See {@link java.util.Formatter} for a richer set of formatting capabilities.
+   * <p>See {@code java.util.Formatter} for a richer set of formatting capabilities.
    *
    * @param string the string which should appear at the beginning of the result
    * @param minLength the minimum length the resulting string must have. Can be zero or negative, in
@@ -220,7 +221,6 @@ public final class Strings {
    * True when a valid surrogate pair starts at the given {@code index} in the given {@code string}.
    * Out-of-range indexes return false.
    */
-  @VisibleForTesting
   static boolean validSurrogatePairAt(CharSequence string, int index) {
     return index >= 0
         && index <= (string.length() - 2)
@@ -234,11 +234,11 @@ public final class Strings {
    * do not match, returns a best-effort form of that string. Will not throw an exception under
    * normal conditions.
    *
-   * <p><b>Note:</b> For most string-formatting needs, use {@link String#format String.format},
-   * {@link java.io.PrintWriter#format PrintWriter.format}, and related methods. These support the
+   * <p><b>Note:</b> For most string-formatting needs, use {@code String#format String.format},
+   * {@code java.io.PrintWriter#format PrintWriter.format}, and related methods. These support the
    * full range of <a
    * href="https://docs.oracle.com/javase/9/docs/api/java/util/Formatter.html#syntax">format
-   * specifiers</a>, and alert you to usage errors by throwing {@link
+   * specifiers</a>, and alert you to usage errors by throwing {@code
    * java.util.IllegalFormatException}.
    *
    * <p>In certain cases, such as outputting debugging information or constructing a message to be
@@ -246,7 +246,7 @@ public final class Strings {
    * purpose except to supplant the real information you were trying to provide. These are the cases
    * this method is made for; it instead generates a best-effort string with all supplied argument
    * values present. This method is also useful in environments such as GWT where {@code
-   * String.format} is not available. As an example, method implementations of the {@link
+   * String.format} is not available. As an example, method implementations of the {@code
    * Preconditions} class use this formatter, for both of the reasons just discussed.
    *
    * <p><b>Warning:</b> Only the exact two-character placeholder sequence {@code "%s"} is
@@ -257,7 +257,7 @@ public final class Strings {
    * @param args the arguments to be substituted into the message template. The first argument
    *     specified is substituted for the first occurrence of {@code "%s"} in the template, and so
    *     forth. A {@code null} argument is converted to the four-character string {@code "null"};
-   *     non-null values are converted to strings using {@link Object#toString()}.
+   *     non-null values are converted to strings using {@code Object#toString()}.
    * @since 25.1
    */
   // TODO(diamondm) consider using Arrays.toString() for array parameters

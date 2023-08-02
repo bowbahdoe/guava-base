@@ -16,9 +16,8 @@ package dev.mccue.guava.base;
 
 import static dev.mccue.guava.base.Strings.lenientFormat;
 
-import dev.mccue.jsr305.CheckForNull;
-
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import dev.mccue.jsr305.CheckForNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
@@ -35,7 +34,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *     "Unexpected bill status: %s", bill.status());
  * }</pre>
  *
- * <h2>Comparison to alternatives</h2>
+ * <h3>Comparison to alternatives</h3>
  *
  * <p><b>Note:</b> In some cases the differences explained below can be subtle. When it's unclear
  * which approach to use, <b>don't worry</b> too much about it; just pick something that seems
@@ -43,17 +42,17 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *
  * <ul>
  *   <li>If checking whether the <i>caller</i> has violated your method or constructor's contract
- *       (such as by passing an invalid argument), use the utilities of the {@link Preconditions}
+ *       (such as by passing an invalid argument), use the utilities of the {@code Preconditions}
  *       class instead.
  *   <li>If checking an <i>impossible</i> condition (which <i>cannot</i> happen unless your own
  *       class or its <i>trusted</i> dependencies is badly broken), this is what ordinary Java
  *       assertions are for. Note that assertions are not enabled by default; they are essentially
  *       considered "compiled comments."
  *   <li>An explicit {@code if/throw} (as illustrated below) is always acceptable; we still
- *       recommend using our {@link VerifyException} exception type. Throwing a plain {@link
+ *       recommend using our {@code VerifyException} exception type. Throwing a plain {@code
  *       RuntimeException} is frowned upon.
- *   <li>Use of {@link java.util.Objects#requireNonNull(Object)} is generally discouraged, since
- *       {@link #verifyNotNull(Object)} and {@link Preconditions#checkNotNull(Object)} perform the
+ *   <li>Use of {@code java.util.Objects#requireNonNull(Object)} is generally discouraged, since
+ *       {@code #verifyNotNull(Object)} and {@code Preconditions#checkNotNull(Object)} perform the
  *       same function with more clarity.
  * </ul>
  *
@@ -73,9 +72,9 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *
  * <h3>Only {@code %s} is supported</h3>
  *
- * <p>As with {@link Preconditions}, {@code Verify} uses {@link Strings#lenientFormat} to format
+ * <p>As with {@code Preconditions}, {@code Verify} uses {@code Strings#lenientFormat} to format
  * error message template strings. This only supports the {@code "%s"} specifier, not the full range
- * of {@link java.util.Formatter} specifiers. However, note that if the number of arguments does not
+ * of {@code java.util.Formatter} specifiers. However, note that if the number of arguments does not
  * match the number of occurrences of {@code "%s"} in the format string, {@code Verify} will still
  * behave as expected, and will still include all argument values in the error message; the message
  * will simply not be formatted exactly as intended.
@@ -113,7 +112,7 @@ public final class Verify {
    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in
    *     square braces. Unmatched placeholders will be left as-is.
    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments
-   *     are converted to strings using {@link String#valueOf(Object)}.
+   *     are converted to strings using {@code String#valueOf(Object)}.
    * @throws VerifyException if {@code expression} is {@code false}
    * @see Preconditions#checkState Preconditions.checkState()
    */
@@ -130,7 +129,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -144,7 +143,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -158,7 +157,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -172,7 +171,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -187,7 +186,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -201,7 +200,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -215,7 +214,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -229,7 +228,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -244,7 +243,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -258,7 +257,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -272,7 +271,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -286,7 +285,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -301,7 +300,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -315,7 +314,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -329,7 +328,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -343,7 +342,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -358,7 +357,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -373,7 +372,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -388,7 +387,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -403,7 +402,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -421,7 +420,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -440,7 +439,7 @@ public final class Verify {
    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with a
    * custom message otherwise.
    *
-   * <p>See {@link #verify(boolean, String, Object...)} for details.
+   * <p>See {@code #verify(boolean, String, Object...)} for details.
    *
    * @since 23.1 (varargs overload since 17.0)
    */
@@ -488,7 +487,7 @@ public final class Verify {
    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in
    *     square braces. Unmatched placeholders will be left as-is.
    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments
-   *     are converted to strings using {@link String#valueOf(Object)}.
+   *     are converted to strings using {@code String#valueOf(Object)}.
    * @return {@code reference}, guaranteed to be non-null, for convenience
    * @throws VerifyException if {@code reference} is {@code null}
    * @see Preconditions#checkNotNull Preconditions.checkNotNull()

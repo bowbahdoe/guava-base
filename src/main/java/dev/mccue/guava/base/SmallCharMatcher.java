@@ -23,6 +23,7 @@ import java.util.BitSet;
  *
  * @author Christopher Swenson
  */
+// no precomputation is done in GWT
 @ElementTypesAreNonnullByDefault
 final class SmallCharMatcher extends NamedFastMatcher {
   static final int MAX_SIZE = 1023;
@@ -67,7 +68,6 @@ final class SmallCharMatcher extends NamedFastMatcher {
    * with linear probing in its implementation. The returned size is the smallest power of two that
    * can hold setSize elements with the desired load factor.
    */
-  @VisibleForTesting
   static int chooseTableSize(int setSize) {
     if (setSize == 1) {
       return 2;

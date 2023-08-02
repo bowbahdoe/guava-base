@@ -26,7 +26,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 /**
  * A strategy for determining whether two instances are considered equivalent, and for computing
  * hash codes in a manner consistent with that equivalence. Two examples of equivalences are the
- * {@linkplain #identity() identity equivalence} and the {@linkplain #equals "equals" equivalence}.
+ * {@code #identity() identity equivalence} and the {@code #equals "equals" equivalence}.
  *
  * @author Bob Lee
  * @author Ben Yu
@@ -71,7 +71,7 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
   }
 
   /**
-   * @deprecated Provided only to satisfy the {@link BiPredicate} interface; use {@link #equivalent}
+   * @deprecated Provided only to satisfy the {@code BiPredicate} interface; use {@code #equivalent}
    *     instead.
    * @since 21.0
    */
@@ -83,9 +83,9 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
 
   /**
    * Implemented by the user to determine whether {@code a} and {@code b} are considered equivalent,
-   * subject to the requirements specified in {@link #equivalent}.
+   * subject to the requirements specified in {@code #equivalent}.
    *
-   * <p>This method should not be called except by {@link #equivalent}. When {@link #equivalent}
+   * <p>This method should not be called except by {@code #equivalent}. When {@code #equivalent}
    * calls this method, {@code a} and {@code b} are guaranteed to be distinct, non-null instances.
    *
    * @since 10.0 (previously, subclasses would override equivalent())
@@ -119,9 +119,9 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
 
   /**
    * Implemented by the user to return a hash code for {@code t}, subject to the requirements
-   * specified in {@link #hash}.
+   * specified in {@code #hash}.
    *
-   * <p>This method should not be called except by {@link #hash}. When {@link #hash} calls this
+   * <p>This method should not be called except by {@code #hash}. When {@code #hash} calls this
    * method, {@code t} is guaranteed to be non-null.
    *
    * @since 10.0 (previously, subclasses would override hash())
@@ -145,10 +145,10 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
    * <p>{@code function} will never be invoked with a null value.
    *
    * <p>Note that {@code function} must be consistent according to {@code this} equivalence
-   * relation. That is, invoking {@link Function#apply} multiple times for a given value must return
+   * relation. That is, invoking {@code Function#apply} multiple times for a given value must return
    * equivalent results. For example, {@code
    * Equivalence.identity().onResultOf(Functions.toStringFunction())} is broken because it's not
-   * guaranteed that {@link Object#toString}) always returns the same string instance.
+   * guaranteed that {@code Object#toString}) always returns the same string instance.
    *
    * @since 10.0
    */
@@ -157,7 +157,7 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
   }
 
   /**
-   * Returns a wrapper of {@code reference} that implements {@link Wrapper#equals(Object)
+   * Returns a wrapper of {@code reference} that implements {@code Wrapper#equals(Object)
    * Object.equals()} such that {@code wrap(a).equals(wrap(b))} if and only if {@code equivalent(a,
    * b)}.
    *
@@ -171,10 +171,10 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
   }
 
   /**
-   * Wraps an object so that {@link #equals(Object)} and {@link #hashCode()} delegate to an {@link
+   * Wraps an object so that {@code #equals(Object)} and {@code #hashCode()} delegate to an {@code
    * Equivalence}.
    *
-   * <p>For example, given an {@link Equivalence} for {@link String strings} named {@code equiv}
+   * <p>For example, given an {@code Equivalence} for {@code String strings} named {@code equiv}
    * that tests equivalence using their lengths:
    *
    * <pre>{@code
@@ -215,8 +215,8 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
     }
 
     /**
-     * Returns {@code true} if {@link Equivalence#equivalent(Object, Object)} applied to the wrapped
-     * references is {@code true} and both wrappers use the {@link Object#equals(Object) same}
+     * Returns {@code true} if {@code Equivalence#equivalent(Object, Object)} applied to the wrapped
+     * references is {@code true} and both wrappers use the {@code Object#equals(Object) same}
      * equivalence.
      */
     @Override
@@ -240,7 +240,7 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
       return false;
     }
 
-    /** Returns the result of {@link Equivalence#hash(Object)} applied to the wrapped reference. */
+    /** Returns the result of {@code Equivalence#hash(Object)} applied to the wrapped reference. */
     @Override
     public int hashCode() {
       return equivalence.hash(reference);
@@ -271,6 +271,7 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
    *
    * @since 10.0
    */
+  
   public final <S extends @Nullable T> Equivalence<Iterable<S>> pairwise() {
     // Ideally, the returned equivalence would support Iterable<? extends T>. However,
     // the need for this is so rare that it's not worth making callers deal with the ugly wildcard.
@@ -329,9 +330,9 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
   }
 
   /**
-   * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.
-   * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither
-   * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns
+   * Returns an equivalence that delegates to {@code Object#equals} and {@code Object#hashCode}.
+   * {@code Equivalence#equivalent} returns {@code true} if both values are null, or if neither
+   * value is null and {@code Object#equals} returns {@code true}. {@code Equivalence#hash} returns
    * {@code 0} if passed a null value.
    *
    * @since 13.0
@@ -343,8 +344,8 @@ public abstract class Equivalence<T> implements BiPredicate<@Nullable T, @Nullab
   }
 
   /**
-   * Returns an equivalence that uses {@code ==} to compare values and {@link
-   * System#identityHashCode(Object)} to compute the hash code. {@link Equivalence#equivalent}
+   * Returns an equivalence that uses {@code ==} to compare values and {@code
+   * System#identityHashCode(Object)} to compute the hash code. {@code Equivalence#equivalent}
    * returns {@code true} if {@code a == b}, including in the case that a and b are both null.
    *
    * @since 13.0

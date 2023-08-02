@@ -56,7 +56,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *
  * <p>would be flagged as having called {@code sqrt()} with an illegal argument.
  *
- * <h2>Performance</h2>
+ * <h3>Performance</h3>
  *
  * <p>Avoid passing message arguments that are expensive to compute; your code will always compute
  * them, even though they usually won't be needed. If you have such arguments, use the conventional
@@ -75,7 +75,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * <h3>Other types of preconditions</h3>
  *
  * <p>Not every type of precondition failure is supported by these methods. Continue to throw
- * standard JDK exceptions such as {@link java.util.NoSuchElementException} or {@link
+ * standard JDK exceptions such as {@code java.util.NoSuchElementException} or {@code
  * UnsupportedOperationException} in the situations they are intended for.
  *
  * <h3>Non-preconditions</h3>
@@ -84,20 +84,20 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * which are <i>not the caller's fault</i>. Doing so is <b>not recommended</b> because it is
  * misleading to future readers of the code and of stack traces. See <a
  * href="https://github.com/google/guava/wiki/ConditionalFailuresExplained">Conditional failures
- * explained</a> in the Guava User Guide for more advice. Notably, {@link Verify} offers assertions
+ * explained</a> in the Guava User Guide for more advice. Notably, {@code Verify} offers assertions
  * similar to those in this class for non-precondition checks.
  *
  * <h3>{@code java.util.Objects.requireNonNull()}</h3>
  *
- * <p>Projects which use {@code com.google.common} should generally avoid the use of {@link
- * java.util.Objects#requireNonNull(Object)}. Instead, use whichever of {@link
- * #checkNotNull(Object)} or {@link Verify#verifyNotNull(Object)} is appropriate to the situation.
+ * <p>Projects which use {@code com.google.common} should generally avoid the use of {@code
+ * java.util.Objects#requireNonNull(Object)}. Instead, use whichever of {@code
+ * #checkNotNull(Object)} or {@code Verify#verifyNotNull(Object)} is appropriate to the situation.
  * (The same goes for the message-accepting overloads.)
  *
  * <h3>Only {@code %s} is supported</h3>
  *
- * <p>{@code Preconditions} uses {@link Strings#lenientFormat} to format error message template
- * strings. This only supports the {@code "%s"} specifier, not the full range of {@link
+ * <p>{@code Preconditions} uses {@code Strings#lenientFormat} to format error message template
+ * strings. This only supports the {@code "%s"} specifier, not the full range of {@code
  * java.util.Formatter} specifiers. However, note that if the number of arguments does not match the
  * number of occurrences of {@code "%s"} in the format string, {@code Preconditions} will still
  * behave as expected, and will still include all argument values in the error message; the message
@@ -133,7 +133,7 @@ public final class Preconditions {
    *
    * @param expression a boolean expression
    * @param errorMessage the exception message to use if the check fails; will be converted to a
-   *     string using {@link String#valueOf(Object)}
+   *     string using {@code String#valueOf(Object)}
    * @throws IllegalArgumentException if {@code expression} is false
    */
   public static void checkArgument(boolean expression, @CheckForNull Object errorMessage) {
@@ -152,7 +152,7 @@ public final class Preconditions {
    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in
    *     square braces. Unmatched placeholders will be left as-is.
    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments
-   *     are converted to strings using {@link String#valueOf(Object)}.
+   *     are converted to strings using {@code String#valueOf(Object)}.
    * @throws IllegalArgumentException if {@code expression} is false
    */
   public static void checkArgument(
@@ -167,7 +167,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -180,7 +180,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -193,7 +193,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -206,7 +206,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -220,7 +220,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -234,7 +234,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -248,7 +248,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -262,7 +262,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -276,7 +276,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -290,7 +290,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -304,7 +304,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -318,7 +318,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -332,7 +332,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -346,7 +346,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -360,7 +360,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -374,7 +374,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -388,7 +388,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -402,7 +402,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -416,7 +416,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -430,7 +430,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -447,7 +447,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -465,7 +465,7 @@ public final class Preconditions {
   /**
    * Ensures the truth of an expression involving one or more parameters to the calling method.
    *
-   * <p>See {@link #checkArgument(boolean, String, Object...)} for details.
+   * <p>See {@code #checkArgument(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -501,7 +501,7 @@ public final class Preconditions {
    *
    * @param expression a boolean expression
    * @param errorMessage the exception message to use if the check fails; will be converted to a
-   *     string using {@link String#valueOf(Object)}
+   *     string using {@code String#valueOf(Object)}
    * @throws IllegalStateException if {@code expression} is false
    * @see Verify#verify Verify.verify()
    */
@@ -522,7 +522,7 @@ public final class Preconditions {
    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in
    *     square braces. Unmatched placeholders will be left as-is.
    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments
-   *     are converted to strings using {@link String#valueOf(Object)}.
+   *     are converted to strings using {@code String#valueOf(Object)}.
    * @throws IllegalStateException if {@code expression} is false
    * @see Verify#verify Verify.verify()
    */
@@ -547,7 +547,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -561,7 +561,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -575,7 +575,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -589,7 +589,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -604,7 +604,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -618,7 +618,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -632,7 +632,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -646,7 +646,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -661,7 +661,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -675,7 +675,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -689,7 +689,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -703,7 +703,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -718,7 +718,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -732,7 +732,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -746,7 +746,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -760,7 +760,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -775,7 +775,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -790,7 +790,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -805,7 +805,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -820,7 +820,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -838,7 +838,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -857,7 +857,7 @@ public final class Preconditions {
    * Ensures the truth of an expression involving the state of the calling instance, but not
    * involving any parameters to the calling method.
    *
-   * <p>See {@link #checkState(boolean, String, Object...)} for details.
+   * <p>See {@code #checkState(boolean, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -908,7 +908,7 @@ public final class Preconditions {
    *
    * @param reference an object reference
    * @param errorMessage the exception message to use if the check fails; will be converted to a
-   *     string using {@link String#valueOf(Object)}
+   *     string using {@code String#valueOf(Object)}
    * @return the non-null reference that was validated
    * @throws NullPointerException if {@code reference} is null
    * @see Verify#verifyNotNull Verify.verifyNotNull()
@@ -931,7 +931,7 @@ public final class Preconditions {
    *     errorMessageArgs[0]}, etc. Unmatched arguments will be appended to the formatted message in
    *     square braces. Unmatched placeholders will be left as-is.
    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments
-   *     are converted to strings using {@link String#valueOf(Object)}.
+   *     are converted to strings using {@code String#valueOf(Object)}.
    * @return the non-null reference that was validated
    * @throws NullPointerException if {@code reference} is null
    * @see Verify#verifyNotNull Verify.verifyNotNull()
@@ -950,7 +950,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -966,7 +966,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -981,7 +981,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -997,7 +997,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1013,7 +1013,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1029,7 +1029,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1045,7 +1045,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1061,7 +1061,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1077,7 +1077,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1093,7 +1093,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1109,7 +1109,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1125,7 +1125,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1141,7 +1141,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1157,7 +1157,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1173,7 +1173,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1189,7 +1189,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1205,7 +1205,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1221,7 +1221,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1237,7 +1237,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1253,7 +1253,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1272,7 +1272,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */
@@ -1292,7 +1292,7 @@ public final class Preconditions {
   /**
    * Ensures that an object reference passed as a parameter to the calling method is not null.
    *
-   * <p>See {@link #checkNotNull(Object, String, Object...)} for details.
+   * <p>See {@code #checkNotNull(Object, String, Object...)} for details.
    *
    * @since 20.0 (varargs overload since 2.0)
    */

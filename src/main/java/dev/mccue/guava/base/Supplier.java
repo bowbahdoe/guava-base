@@ -17,11 +17,11 @@ package dev.mccue.guava.base;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Legacy version of {@link java.util.function.Supplier java.util.function.Supplier}. Semantically,
+ * Legacy version of {@code java.util.function.Supplier java.util.function.Supplier}. Semantically,
  * this could be a factory, generator, builder, closure, or something else entirely. No guarantees
  * are implied by this interface.
  *
- * <p>The {@link Suppliers} class provides common suppliers and related utilities.
+ * <p>The {@code Suppliers} class provides common suppliers and related utilities.
  *
  * <p>As this interface extends {@code java.util.function.Supplier}, an instance of this type can be
  * used as a {@code java.util.function.Supplier} directly. To use a {@code

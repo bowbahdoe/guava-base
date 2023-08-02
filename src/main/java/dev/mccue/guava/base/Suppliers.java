@@ -111,7 +111,6 @@ public final class Suppliers {
         : new NonSerializableMemoizingSupplier<T>(delegate);
   }
 
-  @VisibleForTesting
   static class MemoizingSupplier<T extends @Nullable Object> implements Supplier<T>, Serializable {
     final Supplier<T> delegate;
     transient volatile boolean initialized;
@@ -151,7 +150,6 @@ public final class Suppliers {
     private static final long serialVersionUID = 0;
   }
 
-  @VisibleForTesting
   static class NonSerializableMemoizingSupplier<T extends @Nullable Object> implements Supplier<T> {
     @SuppressWarnings("UnnecessaryLambda") // Must be a fixed singleton object
     private static final Supplier<Void> SUCCESSFULLY_COMPUTED =
@@ -224,7 +222,6 @@ public final class Suppliers {
     return new ExpiringMemoizingSupplier<>(delegate, duration, unit);
   }
 
-  @VisibleForTesting
   @SuppressWarnings("GoodTime") // lots of violations
   static class ExpiringMemoizingSupplier<T extends @Nullable Object>
       implements Supplier<T>, Serializable {
@@ -355,7 +352,7 @@ public final class Suppliers {
   }
 
   /**
-   * Returns a function that accepts a supplier and returns the result of invoking {@link
+   * Returns a function that accepts a supplier and returns the result of invoking {@code
    * Supplier#get} on that supplier.
    *
    * <p><b>Java 8 users:</b> use the method reference {@code Supplier::get} instead.

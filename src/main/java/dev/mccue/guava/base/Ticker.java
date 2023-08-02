@@ -14,9 +14,10 @@
 
 package dev.mccue.guava.base;
 
+
 /**
  * A time source; returns a time value representing the number of nanoseconds elapsed since some
- * fixed but arbitrary point in time. Note that most users should use {@link Stopwatch} instead of
+ * fixed but arbitrary point in time. Note that most users should use {@code Stopwatch} instead of
  * interacting with this class directly.
  *
  * <p><b>Warning:</b> this interface can only be used to measure elapsed time, not wall time.
@@ -34,7 +35,7 @@ public abstract class Ticker {
   public abstract long read();
 
   /**
-   * A ticker that reads the current time using {@link System#nanoTime}.
+   * A ticker that reads the current time using {@code System#nanoTime}.
    *
    * @since 10.0
    */

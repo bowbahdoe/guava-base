@@ -30,10 +30,10 @@ import dev.mccue.jsr305.CheckForNull;
 
 /**
  * Extracts non-overlapping substrings from an input string, typically by recognizing appearances of
- * a <i>separator</i> sequence. This separator can be specified as a single {@linkplain #on(char)
- * character}, fixed {@linkplain #on(String) string}, {@linkplain #onPattern regular expression} or
- * {@link #on(CharMatcher) CharMatcher} instance. Or, instead of using a separator at all, a
- * splitter can extract adjacent substrings of a given {@linkplain #fixedLength fixed length}.
+ * a <i>separator</i> sequence. This separator can be specified as a single {@code #on(char)
+ * character}, fixed {@code #on(String) string}, {@code #onPattern regular expression} or
+ * {@code #on(CharMatcher) CharMatcher} instance. Or, instead of using a separator at all, a
+ * splitter can extract adjacent substrings of a given {@code #fixedLength fixed length}.
  *
  * <p>For example, this expression:
  *
@@ -84,7 +84,7 @@ import dev.mccue.jsr305.CheckForNull;
  * <p>Splitter instances are thread-safe immutable, and are therefore safe to store as {@code static
  * final} constants.
  *
- * <p>The {@link Joiner} class provides the inverse operation to splitting, but note that a
+ * <p>The {@code Joiner} class provides the inverse operation to splitting, but note that a
  * round-trip between the two should be assumed to be lossy.
  *
  * <p>See the Guava User Guide article on <a
@@ -96,6 +96,7 @@ import dev.mccue.jsr305.CheckForNull;
  * @author Louis Wasserman
  * @since 1.0
  */
+
 @ElementTypesAreNonnullByDefault
 public final class Splitter {
   private final CharMatcher trimmer;
@@ -131,7 +132,7 @@ public final class Splitter {
    * Splitter.on(CharMatcher.anyOf(";,")).split("foo,;bar,quux")} returns an iterable containing
    * {@code ["foo", "", "bar", "quux"]}.
    *
-   * @param separatorMatcher a {@link CharMatcher} that determines whether a character is a
+   * @param separatorMatcher a {@code CharMatcher} that determines whether a character is a
    *     separator
    * @return a splitter, with default settings, that uses this matcher
    */
@@ -210,6 +211,7 @@ public final class Splitter {
    * @return a splitter, with default settings, that uses this pattern
    * @throws IllegalArgumentException if {@code separatorPattern} matches the empty string
    */
+  // java.util.regex
   public static Splitter on(Pattern separatorPattern) {
     return on(new JdkPattern(separatorPattern));
   }
@@ -252,6 +254,7 @@ public final class Splitter {
    * @throws IllegalArgumentException if {@code separatorPattern} matches the empty string or is a
    *     malformed expression
    */
+  // java.util.regex
   public static Splitter onPattern(String separatorPattern) {
     return on(Platform.compilePattern(separatorPattern));
   }
@@ -261,7 +264,7 @@ public final class Splitter {
    * Splitter.fixedLength(2).split("abcde")} returns an iterable containing {@code ["ab", "cd",
    * "e"]}. The last piece can be smaller than {@code length} but will never be empty.
    *
-   * <p><b>Note:</b> if {@link #fixedLength} is used in conjunction with {@link #limit}, the final
+   * <p><b>Note:</b> if {@code #fixedLength} is used in conjunction with {@code #limit}, the final
    * split piece <i>may be longer than the specified fixed length</i>. This is because the splitter
    * will <i>stop splitting when the limit is reached</i>, and just return the final piece as-is.
    *
@@ -307,7 +310,7 @@ public final class Splitter {
    * splitter always trims results first before checking for emptiness. So, for example, {@code
    * Splitter.on(':').omitEmptyStrings().trimResults().split(": : : ")} returns an empty iterable.
    *
-   * <p>Note that it is ordinarily not possible for {@link #split(CharSequence)} to return an empty
+   * <p>Note that it is ordinarily not possible for {@code #split(CharSequence)} to return an empty
    * iterable, but when using this option, it can (if the input sequence consists of nothing but
    * separators).
    *
@@ -320,7 +323,7 @@ public final class Splitter {
   /**
    * Returns a splitter that behaves equivalently to {@code this} splitter but stops splitting after
    * it reaches the limit. The limit defines the maximum number of items returned by the iterator,
-   * or the maximum size of the list returned by {@link #splitToList}.
+   * or the maximum size of the list returned by {@code #splitToList}.
    *
    * <p>For example, {@code Splitter.on(',').limit(3).split("a,b,c,d")} returns an iterable
    * containing {@code ["a", "b", "c,d"]}. When omitting empty strings, the omitted strings do not
@@ -340,7 +343,7 @@ public final class Splitter {
 
   /**
    * Returns a splitter that behaves equivalently to {@code this} splitter, but automatically
-   * removes leading and trailing {@linkplain CharMatcher#whitespace whitespace} from each returned
+   * removes leading and trailing {@code CharMatcher#whitespace whitespace} from each returned
    * substring; equivalent to {@code trimResults(CharMatcher.whitespace())}. For example, {@code
    * Splitter.on(',').trimResults().split(" a, b ,c ")} returns an iterable containing {@code ["a",
    * "b", "c"]}.
@@ -357,7 +360,7 @@ public final class Splitter {
    * example, {@code Splitter.on(',').trimResults(CharMatcher.is('_')).split("_a ,_b_ ,c__")}
    * returns an iterable containing {@code ["a ", "b_ ", "c"]}.
    *
-   * @param trimmer a {@link CharMatcher} that determines whether a character should be removed from
+   * @param trimmer a {@code CharMatcher} that determines whether a character should be removed from
    *     the beginning/end of a subsequence
    * @return a splitter with the desired configuration
    */
@@ -368,9 +371,9 @@ public final class Splitter {
   }
 
   /**
-   * Splits {@code sequence} into string components and makes them available through an {@link
-   * Iterator}, which may be lazily evaluated. If you want an eagerly computed {@link List}, use
-   * {@link #splitToList(CharSequence)}. Java 8 users may prefer {@link #splitToStream} instead.
+   * Splits {@code sequence} into string components and makes them available through an {@code
+   * Iterator}, which may be lazily evaluated. If you want an eagerly computed {@code List}, use
+   * {@code #splitToList(CharSequence)}. Java 8 users may prefer {@code #splitToStream} instead.
    *
    * @param sequence the sequence of characters to split
    * @return an iteration over the segments split from the parameter
@@ -400,7 +403,7 @@ public final class Splitter {
 
   /**
    * Splits {@code sequence} into string components and returns them as an immutable list. If you
-   * want an {@link Iterable} which may be lazily evaluated, use {@link #split(CharSequence)}.
+   * want an {@code Iterable} which may be lazily evaluated, use {@code #split(CharSequence)}.
    *
    * @param sequence the sequence of characters to split
    * @return an immutable list of the segments split from the parameter
@@ -420,9 +423,9 @@ public final class Splitter {
   }
 
   /**
-   * Splits {@code sequence} into string components and makes them available through an {@link
-   * Stream}, which may be lazily evaluated. If you want an eagerly computed {@link List}, use
-   * {@link #splitToList(CharSequence)}.
+   * Splits {@code sequence} into string components and makes them available through an {@code
+   * Stream}, which may be lazily evaluated. If you want an eagerly computed {@code List}, use
+   * {@code #splitToList(CharSequence)}.
    *
    * @param sequence the sequence of characters to split
    * @return a stream over the segments split from the parameter
@@ -457,7 +460,7 @@ public final class Splitter {
    * Returns a {@code MapSplitter} which splits entries based on this splitter, and splits entries
    * into keys and values using the specified key-value splitter.
    *
-   * <p>Note: Any configuration option configured on this splitter, such as {@link #trimResults},
+   * <p>Note: Any configuration option configured on this splitter, such as {@code #trimResults},
    * does not change the behavior of the {@code keyValueSplitter}.
    *
    * <p>Example:
@@ -479,8 +482,8 @@ public final class Splitter {
   /**
    * An object that splits strings into maps as {@code Splitter} splits iterables and lists. Like
    * {@code Splitter}, it is thread-safe and immutable. The common way to build instances is by
-   * providing an additional {@linkplain Splitter#withKeyValueSeparator key-value separator} to
-   * {@link Splitter}.
+   * providing an additional {@code Splitter#withKeyValueSeparator key-value separator} to
+   * {@code Splitter}.
    *
    * @since 10.0
    */

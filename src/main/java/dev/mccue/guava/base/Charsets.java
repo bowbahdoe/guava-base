@@ -17,10 +17,10 @@ package dev.mccue.guava.base;
 import java.nio.charset.Charset;
 
 /**
- * Contains constant definitions for the six standard {@link Charset} instances, which are
+ * Contains constant definitions for the six standard {@code Charset} instances, which are
  * guaranteed to be supported by all Java platform implementations.
  *
- * <p>Assuming you're free to choose, note that <b>{@link #UTF_8} is widely preferred</b>.
+ * <p>Assuming you're free to choose, note that <b>{@code #UTF_8} is widely preferred</b>.
  *
  * <p>See the Guava User Guide article on <a
  * href="https://github.com/google/guava/wiki/StringsExplained#charsets">{@code Charsets}</a>.
@@ -28,6 +28,7 @@ import java.nio.charset.Charset;
  * @author Mike Bostock
  * @since 1.0
  */
+
 @ElementTypesAreNonnullByDefault
 public final class Charsets {
   private Charsets() {}
@@ -35,16 +36,17 @@ public final class Charsets {
   /**
    * US-ASCII: seven-bit ASCII, the Basic Latin block of the Unicode character set (ISO646-US).
    *
-   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link
+   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@code
    * java.nio.charset.StandardCharsets#US_ASCII} instead.
    *
    */
+  // Charset not supported by GWT
   public static final Charset US_ASCII = Charset.forName("US-ASCII");
 
   /**
    * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).
    *
-   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link
+   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@code
    * java.nio.charset.StandardCharsets#ISO_8859_1} instead.
    *
    */
@@ -53,7 +55,7 @@ public final class Charsets {
   /**
    * UTF-8: eight-bit UCS Transformation Format.
    *
-   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link
+   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@code
    * java.nio.charset.StandardCharsets#UTF_8} instead.
    *
    */
@@ -62,29 +64,32 @@ public final class Charsets {
   /**
    * UTF-16BE: sixteen-bit UCS Transformation Format, big-endian byte order.
    *
-   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link
+   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@code
    * java.nio.charset.StandardCharsets#UTF_16BE} instead.
    *
    */
+  // Charset not supported by GWT
   public static final Charset UTF_16BE = Charset.forName("UTF-16BE");
 
   /**
    * UTF-16LE: sixteen-bit UCS Transformation Format, little-endian byte order.
    *
-   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link
+   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@code
    * java.nio.charset.StandardCharsets#UTF_16LE} instead.
    *
    */
+  // Charset not supported by GWT
   public static final Charset UTF_16LE = Charset.forName("UTF-16LE");
 
   /**
    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order
    * mark.
    *
-   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@link
+   * <p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use {@code
    * java.nio.charset.StandardCharsets#UTF_16} instead.
    *
    */
+  // Charset not supported by GWT
   public static final Charset UTF_16 = Charset.forName("UTF-16");
 
   /*

@@ -14,8 +14,9 @@
 
 package dev.mccue.guava.base;
 
+
 /**
- * The subset of the {@link java.util.regex.Pattern} API which is used by this package, and also
+ * The subset of the {@code java.util.regex.Pattern} API which is used by this package, and also
  * shared with the {@code re2j} library. For internal use only. Please refer to the {@code Pattern}
  * javadoc for details.
  */

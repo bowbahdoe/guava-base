@@ -82,6 +82,7 @@ import dev.mccue.jsr305.CheckForNull;
  * @since 10.0
  */
 @DoNotMock("Use Optional.of(value) or Optional.absent()")
+
 @ElementTypesAreNonnullByDefault
 public abstract class Optional<T> implements Serializable {
   /**
@@ -96,7 +97,7 @@ public abstract class Optional<T> implements Serializable {
 
   /**
    * Returns an {@code Optional} instance containing the given non-null reference. To have {@code
-   * null} treated as {@link #absent}, use {@link #fromNullable} instead.
+   * null} treated as {@code #absent}, use {@code #fromNullable} instead.
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> no differences.
    *
@@ -108,7 +109,7 @@ public abstract class Optional<T> implements Serializable {
 
   /**
    * If {@code nullableReference} is non-null, returns an {@code Optional} instance containing that
-   * reference; otherwise returns {@link Optional#absent}.
+   * reference; otherwise returns {@code Optional#absent}.
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's
    * {@code Optional.ofNullable}.
@@ -170,22 +171,22 @@ public abstract class Optional<T> implements Serializable {
 
   /**
    * Returns the contained instance, which must be present. If the instance might be absent, use
-   * {@link #or(Object)} or {@link #orNull} instead.
+   * {@code #or(Object)} or {@code #orNull} instead.
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> when the value is absent, this method
-   * throws {@link IllegalStateException}, whereas the Java 8 counterpart throws {@link
+   * throws {@code IllegalStateException}, whereas the Java 8 counterpart throws {@code
    * java.util.NoSuchElementException NoSuchElementException}.
    *
-   * @throws IllegalStateException if the instance is absent ({@link #isPresent} returns {@code
-   *     false}); depending on this <i>specific</i> exception type (over the more general {@link
+   * @throws IllegalStateException if the instance is absent ({@code #isPresent} returns {@code
+   *     false}); depending on this <i>specific</i> exception type (over the more general {@code
    *     RuntimeException}) is discouraged
    */
   public abstract T get();
 
   /**
    * Returns the contained instance if it is present; {@code defaultValue} otherwise. If no default
-   * value should be required because the instance is known to be present, use {@link #get()}
-   * instead. For a default value of {@code null}, use {@link #orNull}.
+   * value should be required because the instance is known to be present, use {@code #get()}
+   * instead. For a default value of {@code null}, use {@code #orNull}.
    *
    * <p>Note about generics: The signature {@code public T or(T defaultValue)} is overly
    * restrictive. However, the ideal signature, {@code public <S super T> S or(S)}, is not legal
@@ -214,7 +215,7 @@ public abstract class Optional<T> implements Serializable {
    * }</pre>
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> this method is similar to Java 8's {@code
-   * Optional.orElse}, but will not accept {@code null} as a {@code defaultValue} ({@link #orNull}
+   * Optional.orElse}, but will not accept {@code null} as a {@code defaultValue} ({@code #orNull}
    * must be used instead). As a result, the value returned by this method is guaranteed non-null,
    * which is not the case for the {@code java.util} equivalent.
    */
@@ -243,7 +244,7 @@ public abstract class Optional<T> implements Serializable {
 
   /**
    * Returns the contained instance if it is present; {@code null} otherwise. If the instance is
-   * known to be present, use {@link #get()} instead.
+   * known to be present, use {@code #get()} instead.
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's
    * {@code Optional.orElse(null)}.
@@ -252,8 +253,8 @@ public abstract class Optional<T> implements Serializable {
   public abstract T orNull();
 
   /**
-   * Returns an immutable singleton {@link Set} whose only element is the contained instance if it
-   * is present; an empty immutable {@link Set} otherwise.
+   * Returns an immutable singleton {@code Set} whose only element is the contained instance if it
+   * is present; an empty immutable {@code Set} otherwise.
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's
    * {@code Optional} class. However, this common usage:
@@ -277,8 +278,8 @@ public abstract class Optional<T> implements Serializable {
   public abstract Set<T> asSet();
 
   /**
-   * If the instance is present, it is transformed with the given {@link Function}; otherwise,
-   * {@link Optional#absent} is returned.
+   * If the instance is present, it is transformed with the given {@code Function}; otherwise,
+   * {@code Optional#absent} is returned.
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> this method is similar to Java 8's {@code
    * Optional.map}, except when {@code function} returns {@code null}. In this case this method
@@ -291,7 +292,7 @@ public abstract class Optional<T> implements Serializable {
 
   /**
    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the
-   * contained references are {@linkplain Object#equals equal} to each other or both are absent.
+   * contained references are {@code Object#equals equal} to each other or both are absent.
    * Note that {@code Optional} instances of differing parameterized types can be equal.
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> no differences.
@@ -319,7 +320,7 @@ public abstract class Optional<T> implements Serializable {
 
   /**
    * Returns the value of each present instance from the supplied {@code optionals}, in order,
-   * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are
+   * skipping over occurrences of {@code Optional#absent}. Iterators are unmodifiable and are
    * evaluated lazily.
    *
    * <p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's

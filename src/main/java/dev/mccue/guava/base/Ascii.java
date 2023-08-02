@@ -17,6 +17,7 @@ package dev.mccue.guava.base;
 import static dev.mccue.guava.base.Preconditions.checkArgument;
 import static dev.mccue.guava.base.Preconditions.checkNotNull;
 
+
 /**
  * Static methods pertaining to ASCII characters (those in the range of values {@code 0x00} through
  * {@code 0x7F}), and to strings containing such characters.
@@ -24,8 +25,9 @@ import static dev.mccue.guava.base.Preconditions.checkNotNull;
  * <p>ASCII utilities also exist in other classes of this package:
  *
  * <ul>
-*   <li>{@link Charsets#US_ASCII} specifies the {@code Charset} of ASCII characters.
- *   <li>{@link CharMatcher#ascii} matches ASCII characters and provides text processing methods
+ *   <!-- TODO(kevinb): how can we make this not produce a warning when building gwt javadoc? -->
+ *   <li>{@code Charsets#US_ASCII} specifies the {@code Charset} of ASCII characters.
+ *   <li>{@code CharMatcher#ascii} matches ASCII characters and provides text processing methods
  *       which operate only on the ASCII characters of a string.
  * </ul>
  *
@@ -139,7 +141,7 @@ public final class Ascii {
   public static final byte LF = 10;
 
   /**
-   * Alternate name for {@link #LF}. ({@code LF} is preferred.)
+   * Alternate name for {@code #LF}. ({@code LF} is preferred.)
    *
    * @since 8.0
    */
@@ -237,7 +239,7 @@ public final class Ascii {
   public static final byte DC3 = 19; // aka XOFF
 
   /**
-   * Transmission off. See {@link #XON} for explanation.
+   * Transmission off. See {@code #XON} for explanation.
    *
    * @since 8.0
    */
@@ -364,7 +366,7 @@ public final class Ascii {
   public static final byte SP = 32;
 
   /**
-   * Alternate name for {@link #SP}.
+   * Alternate name for {@code #SP}.
    *
    * @since 8.0
    */
@@ -396,7 +398,7 @@ public final class Ascii {
   private static final char CASE_MASK = 0x20;
 
   /**
-   * Returns a copy of the input string in which all {@linkplain #isUpperCase(char) uppercase ASCII
+   * Returns a copy of the input string in which all {@code #isUpperCase(char) uppercase ASCII
    * characters} have been converted to lowercase. All other characters are copied without
    * modification.
    */
@@ -418,7 +420,7 @@ public final class Ascii {
   }
 
   /**
-   * Returns a copy of the input character sequence in which all {@linkplain #isUpperCase(char)
+   * Returns a copy of the input character sequence in which all {@code #isUpperCase(char)
    * uppercase ASCII characters} have been converted to lowercase. All other characters are copied
    * without modification.
    *
@@ -436,7 +438,7 @@ public final class Ascii {
   }
 
   /**
-   * If the argument is an {@linkplain #isUpperCase(char) uppercase ASCII character}, returns the
+   * If the argument is an {@code #isUpperCase(char) uppercase ASCII character}, returns the
    * lowercase equivalent. Otherwise returns the argument.
    */
   public static char toLowerCase(char c) {
@@ -444,7 +446,7 @@ public final class Ascii {
   }
 
   /**
-   * Returns a copy of the input string in which all {@linkplain #isLowerCase(char) lowercase ASCII
+   * Returns a copy of the input string in which all {@code #isLowerCase(char) lowercase ASCII
    * characters} have been converted to uppercase. All other characters are copied without
    * modification.
    */
@@ -466,7 +468,7 @@ public final class Ascii {
   }
 
   /**
-   * Returns a copy of the input character sequence in which all {@linkplain #isLowerCase(char)
+   * Returns a copy of the input character sequence in which all {@code #isLowerCase(char)
    * lowercase ASCII characters} have been converted to uppercase. All other characters are copied
    * without modification.
    *
@@ -484,7 +486,7 @@ public final class Ascii {
   }
 
   /**
-   * If the argument is a {@linkplain #isLowerCase(char) lowercase ASCII character}, returns the
+   * If the argument is a {@code #isLowerCase(char) lowercase ASCII character}, returns the
    * uppercase equivalent. Otherwise returns the argument.
    */
   public static char toUpperCase(char c) {
@@ -577,7 +579,7 @@ public final class Ascii {
    * equal, ignoring the case of any ASCII alphabetic characters between {@code 'a'} and {@code 'z'}
    * or {@code 'A'} and {@code 'Z'} inclusive.
    *
-   * <p>This method is significantly faster than {@link String#equalsIgnoreCase} and should be used
+   * <p>This method is significantly faster than {@code String#equalsIgnoreCase} and should be used
    * in preference if at least one of the parameters is known to contain only ASCII characters.
    *
    * <p>Note however that this method does not always behave identically to expressions such as:
@@ -587,7 +589,7 @@ public final class Ascii {
    *   <li>{@code string.toLowerCase().equals("lower case ascii")}
    * </ul>
    *
-   * <p>due to case-folding of some non-ASCII characters (which does not occur in {@link
+   * <p>due to case-folding of some non-ASCII characters (which does not occur in {@code
    * String#equalsIgnoreCase}). However in almost all cases that ASCII strings are used, the author
    * probably wanted the behavior provided by this method rather than the subtle and sometimes
    * surprising behavior of {@code toUpperCase()} and {@code toLowerCase()}.

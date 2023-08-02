@@ -18,7 +18,7 @@ import dev.mccue.jsr305.CheckForNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Legacy version of {@link java.util.function.Predicate java.util.function.Predicate}. Determines a
+ * Legacy version of {@code java.util.function.Predicate java.util.function.Predicate}. Determines a
  * true or false value for a given input.
  *
  * <p>As this interface extends {@code java.util.function.Predicate}, an instance of this type may
@@ -31,7 +31,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * Otherwise, at least reduce <i>explicit</i> dependencies on this type by using lambda expressions
  * or method references instead of classes, leaving your code easier to migrate in the future.
  *
- * <p>The {@link Predicates} class provides common predicates and related utilities.
+ * <p>The {@code Predicates} class provides common predicates and related utilities.
  *
  * <p>See the Guava User Guide article on <a
  * href="https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code Predicate}</a>.
@@ -49,7 +49,7 @@ public interface Predicate<T extends @Nullable Object> extends java.util.functio
    *
    * <ul>
    *   <li>Its execution does not cause any observable side effects.
-   *   <li>The computation is <i>consistent with equals</i>; that is, {@link Objects#equal
+   *   <li>The computation is <i>consistent with equals</i>; that is, {@code Objects#equal
    *       Objects.equal}{@code (a, b)} implies that {@code predicate.apply(a) ==
    *       predicate.apply(b))}.
    * </ul>
@@ -62,9 +62,9 @@ public interface Predicate<T extends @Nullable Object> extends java.util.functio
   /**
    * Indicates whether another object is equal to this predicate.
    *
-   * <p>Most implementations will have no reason to override the behavior of {@link Object#equals}.
+   * <p>Most implementations will have no reason to override the behavior of {@code Object#equals}.
    * However, an implementation may also choose to return {@code true} whenever {@code object} is a
-   * {@link Predicate} that it considers <i>interchangeable</i> with this one. "Interchangeable"
+   * {@code Predicate} that it considers <i>interchangeable</i> with this one. "Interchangeable"
    * <i>typically</i> means that {@code this.apply(t) == that.apply(t)} for all {@code t} of type
    * {@code T}). Note that a {@code false} result from this method does not imply that the
    * predicates are known <i>not</i> to be interchangeable.

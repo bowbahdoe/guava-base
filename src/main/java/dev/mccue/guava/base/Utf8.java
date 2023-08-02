@@ -18,8 +18,9 @@ import static dev.mccue.guava.base.Preconditions.checkPositionIndexes;
 import static java.lang.Character.MAX_SURROGATE;
 import static java.lang.Character.MIN_SURROGATE;
 
+
 /**
- * Low-level, high-performance utility methods related to the {@linkplain Charsets#UTF_8 UTF-8}
+ * Low-level, high-performance utility methods related to the {@code Charsets#UTF_8 UTF-8}
  * character encoding. UTF-8 is defined in section D92 of <a
  * href="http://www.unicode.org/versions/Unicode6.2.0/ch03.pdf">The Unicode Standard Core
  * Specification, Chapter 3</a>.
@@ -33,6 +34,7 @@ import static java.lang.Character.MIN_SURROGATE;
  * @author Clément Roux
  * @since 16.0
  */
+
 @ElementTypesAreNonnullByDefault
 public final class Utf8 {
   /**
@@ -111,7 +113,7 @@ public final class Utf8 {
 
   /**
    * Returns whether the given byte array slice is a well-formed UTF-8 byte sequence, as defined by
-   * {@link #isWellFormed(byte[])}. Note that this can be false even when {@code
+   * {@code #isWellFormed(byte[])}. Note that this can be false even when {@code
    * isWellFormed(bytes)} is true.
    *
    * @param bytes the input buffer

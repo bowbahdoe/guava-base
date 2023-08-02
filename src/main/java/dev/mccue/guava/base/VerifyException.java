@@ -19,7 +19,7 @@ import dev.mccue.jsr305.CheckForNull;
 /**
  * Exception thrown upon the failure of a <a
  * href="https://github.com/google/guava/wiki/ConditionalFailuresExplained">verification check</a>,
- * including those performed by the convenience methods of the {@link Verify} class.
+ * including those performed by the convenience methods of the {@code Verify} class.
  *
  * @since 17.0
  */

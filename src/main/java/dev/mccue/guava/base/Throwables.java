@@ -14,7 +14,7 @@
 
 package dev.mccue.guava.base;
 
-import static  dev.mccue.guava.base.Preconditions.checkNotNull;
+import static dev.mccue.guava.base.Preconditions.checkNotNull;
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
@@ -32,7 +32,7 @@ import java.util.List;
 import dev.mccue.jsr305.CheckForNull;
 
 /**
- * Static utility methods pertaining to instances of {@link Throwable}.
+ * Static utility methods pertaining to instances of {@code Throwable}.
  *
  * <p>See the Guava User Guide entry on <a
  * href="https://github.com/google/guava/wiki/ThrowablesExplained">Throwables</a>.
@@ -41,6 +41,7 @@ import dev.mccue.jsr305.CheckForNull;
  * @author Ben Yu
  * @since 1.0
  */
+
 @ElementTypesAreNonnullByDefault
 public final class Throwables {
   private Throwables() {}
@@ -65,6 +66,7 @@ public final class Throwables {
    *
    * @since 20.0
    */
+  // Class.cast, Class.isInstance
   public static <X extends Throwable> void throwIfInstanceOf(
       Throwable throwable, Class<X> declaredType) throws X {
     checkNotNull(throwable);
@@ -89,10 +91,11 @@ public final class Throwables {
    * }
    * </pre>
    *
-   * @deprecated Use {@link #throwIfInstanceOf}, which has the same behavior but rejects {@code
+   * @deprecated Use {@code #throwIfInstanceOf}, which has the same behavior but rejects {@code
    *     null}.
    */
   @Deprecated
+  // throwIfInstanceOf
   public static <X extends Throwable> void propagateIfInstanceOf(
       @CheckForNull Throwable throwable, Class<X> declaredType) throws X {
     if (throwable != null) {
@@ -101,7 +104,7 @@ public final class Throwables {
   }
 
   /**
-   * Throws {@code throwable} if it is a {@link RuntimeException} or {@link Error}. Example usage:
+   * Throws {@code throwable} if it is a {@code RuntimeException} or {@code Error}. Example usage:
    *
    * <pre>
    * for (Foo foo : foos) {
@@ -130,8 +133,8 @@ public final class Throwables {
   }
 
   /**
-   * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link
-   * RuntimeException} or {@link Error}. Example usage:
+   * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code
+   * RuntimeException} or {@code Error}. Example usage:
    *
    * <pre>
    * try {
@@ -144,7 +147,7 @@ public final class Throwables {
    * }
    * </pre>
    *
-   * @deprecated Use {@link #throwIfUnchecked}, which has the same behavior but rejects {@code
+   * @deprecated Use {@code #throwIfUnchecked}, which has the same behavior but rejects {@code
    *     null}.
    */
   @Deprecated
@@ -155,8 +158,8 @@ public final class Throwables {
   }
 
   /**
-   * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link
-   * RuntimeException}, {@link Error}, or {@code declaredType}. Example usage:
+   * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code
+   * RuntimeException}, {@code Error}, or {@code declaredType}. Example usage:
    *
    * <pre>
    * try {
@@ -172,6 +175,7 @@ public final class Throwables {
    * @param throwable the Throwable to possibly propagate
    * @param declaredType the single checked exception type declared by the calling method
    */
+  // propagateIfInstanceOf
   public static <X extends Throwable> void propagateIfPossible(
       @CheckForNull Throwable throwable, Class<X> declaredType) throws X {
     propagateIfInstanceOf(throwable, declaredType);
@@ -179,16 +183,17 @@ public final class Throwables {
   }
 
   /**
-   * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link
-   * RuntimeException}, {@link Error}, {@code declaredType1}, or {@code declaredType2}. In the
+   * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code
+   * RuntimeException}, {@code Error}, {@code declaredType1}, or {@code declaredType2}. In the
    * unlikely case that you have three or more declared checked exception types, you can handle them
-   * all by invoking these methods repeatedly. See usage example in {@link
+   * all by invoking these methods repeatedly. See usage example in {@code
    * #propagateIfPossible(Throwable, Class)}.
    *
    * @param throwable the Throwable to possibly propagate
    * @param declaredType1 any checked exception type declared by the calling method
    * @param declaredType2 any other checked exception type declared by the calling method
    */
+  // propagateIfInstanceOf
   public static <X1 extends Throwable, X2 extends Throwable> void propagateIfPossible(
       @CheckForNull Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
       throws X1, X2 {
@@ -198,7 +203,7 @@ public final class Throwables {
   }
 
   /**
-   * Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or {@link
+   * Propagates {@code throwable} as-is if it is an instance of {@code RuntimeException} or {@code
    * Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then propagates.
    *
    * <p>This method always throws an exception. The {@code RuntimeException} return type allows
@@ -221,7 +226,7 @@ public final class Throwables {
    * @return nothing will ever be returned; this return type is only for your convenience, as
    *     illustrated in the example above
    * @deprecated Use {@code throw e} or {@code throw new RuntimeException(e)} directly, or use a
-   *     combination of {@link #throwIfUnchecked} and {@code throw new RuntimeException(e)}. For
+   *     combination of {@code #throwIfUnchecked} and {@code throw new RuntimeException(e)}. For
    *     background on the deprecation, read <a href="https://goo.gl/Ivn2kc">Why we deprecated
    *     {@code Throwables.propagate}</a>.
    */
@@ -309,15 +314,16 @@ public final class Throwables {
    * Returns {@code throwable}'s cause, cast to {@code expectedCauseType}.
    *
    * <p>Prefer this method instead of manually casting an exception's cause. For example, {@code
-   * (IOException) e.getCause()} throws a {@link ClassCastException} that discards the original
-   * exception {@code e} if the cause is not an {@link IOException}, but {@code
-   * Throwables.getCauseAs(e, IOException.class)} keeps {@code e} as the {@link
+   * (IOException) e.getCause()} throws a {@code ClassCastException} that discards the original
+   * exception {@code e} if the cause is not an {@code IOException}, but {@code
+   * Throwables.getCauseAs(e, IOException.class)} keeps {@code e} as the {@code
    * ClassCastException}'s cause.
    *
    * @throws ClassCastException if the cause cannot be cast to the expected type. The {@code
    *     ClassCastException}'s cause is {@code throwable}.
    * @since 22.0
    */
+  // Class.cast(Object)
   @CheckForNull
   public static <X extends Throwable> X getCauseAs(
       Throwable throwable, Class<X> expectedCauseType) {
@@ -330,11 +336,12 @@ public final class Throwables {
   }
 
   /**
-   * Returns a string containing the result of {@link Throwable#toString() toString()}, followed by
+   * Returns a string containing the result of {@code Throwable#toString() toString()}, followed by
    * the full, recursive stack trace of {@code throwable}. Note that you probably should not be
    * parsing the resulting string; if you need programmatic access to the stack frames, you can call
-   * {@link Throwable#getStackTrace()}.
+   * {@code Throwable#getStackTrace()}.
    */
+  // java.io.PrintWriter, java.io.StringWriter
   public static String getStackTraceAsString(Throwable throwable) {
     StringWriter stringWriter = new StringWriter();
     throwable.printStackTrace(new PrintWriter(stringWriter));
@@ -344,11 +351,11 @@ public final class Throwables {
   /**
    * Returns the stack trace of {@code throwable}, possibly providing slower iteration over the full
    * trace but faster iteration over parts of the trace. Here, "slower" and "faster" are defined in
-   * comparison to the normal way to access the stack trace, {@link Throwable#getStackTrace()
+   * comparison to the normal way to access the stack trace, {@code Throwable#getStackTrace()
    * throwable.getStackTrace()}. Note, however, that this method's special implementation is not
    * available for all platforms and configurations. If that implementation is unavailable, this
    * method falls back to {@code getStackTrace}. Callers that require the special implementation can
-   * check its availability with {@link #lazyStackTraceIsLazy()}.
+   * check its availability with {@code #lazyStackTraceIsLazy()}.
    *
    * <p>The expected (but not guaranteed) performance of the special implementation differs from
    * {@code getStackTrace} in one main way: The {@code lazyStackTrace} call itself returns quickly
@@ -362,22 +369,24 @@ public final class Throwables {
    *       1/stackSize}).
    * </ul>
    *
-   * <p>Note: The special implementation does not respect calls to {@link Throwable#setStackTrace
+   * <p>Note: The special implementation does not respect calls to {@code Throwable#setStackTrace
    * throwable.setStackTrace}. Instead, it always reflects the original stack trace from the
    * exception's creation.
    *
    * @since 19.0
-   * @deprecated This method is equivalent to {@link Throwable#getStackTrace()} on JDK versions past
-   *     JDK 8 and on all Android versions. Use {@link Throwable#getStackTrace()} directly, or where
+   * @deprecated This method is equivalent to {@code Throwable#getStackTrace()} on JDK versions past
+   *     JDK 8 and on all Android versions. Use {@code Throwable#getStackTrace()} directly, or where
    *     possible use the {@code java.lang.StackWalker.walk} method introduced in JDK 9.
    */
   @Deprecated
+  // lazyStackTraceIsLazy, jlaStackTrace
+
   public static List<StackTraceElement> lazyStackTrace(Throwable throwable) {
     return unmodifiableList(asList(throwable.getStackTrace()));
   }
 
   /**
-   * Returns whether {@link #lazyStackTrace} will use the special implementation described in its
+   * Returns whether {@code #lazyStackTrace} will use the special implementation described in its
    * documentation.
    *
    * @since 19.0

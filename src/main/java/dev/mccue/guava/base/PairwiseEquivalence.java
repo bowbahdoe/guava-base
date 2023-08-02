@@ -19,6 +19,7 @@ import java.util.Iterator;
 import dev.mccue.jsr305.CheckForNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+
 @ElementTypesAreNonnullByDefault
 final class PairwiseEquivalence<E, T extends @Nullable E> extends Equivalence<Iterable<T>>
     implements Serializable {

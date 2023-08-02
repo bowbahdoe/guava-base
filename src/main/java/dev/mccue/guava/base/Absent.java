@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Set;
 import dev.mccue.jsr305.CheckForNull;
 
-/** Implementation of an {@link Optional} not containing a reference. */
+/** Implementation of an {@code Optional} not containing a reference. */
 @ElementTypesAreNonnullByDefault
 final class Absent<T> extends Optional<T> {
   static final Absent<Object> INSTANCE = new Absent<>();
