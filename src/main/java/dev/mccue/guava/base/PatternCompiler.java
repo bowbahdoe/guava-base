@@ -14,6 +14,7 @@
 
 package dev.mccue.guava.base;
 
+import com.google.errorprone.annotations.RestrictedApi;
 
 /**
  * Pluggable interface for compiling a regex pattern. By default this package uses the {@code
@@ -27,11 +28,17 @@ interface PatternCompiler {
    *
    * @throws IllegalArgumentException if the pattern is invalid
    */
+  @RestrictedApi(
+      explanation = "PatternCompiler is an implementation detail of dev.mccue.guava.base",
+      allowedOnPath = ".*/com/google/common/base/.*")
   CommonPattern compile(String pattern);
 
   /**
    * Returns {@code true} if the regex implementation behaves like Perl -- notably, by supporting
    * possessive quantifiers but also being susceptible to catastrophic backtracking.
    */
+  @RestrictedApi(
+      explanation = "PatternCompiler is an implementation detail of dev.mccue.guava.base",
+      allowedOnPath = ".*/com/google/common/base/.*")
   boolean isPcreLike();
 }

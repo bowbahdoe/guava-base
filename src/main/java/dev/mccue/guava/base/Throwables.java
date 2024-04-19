@@ -155,7 +155,10 @@ public final class Throwables {
    *
    * @param throwable the Throwable to possibly propagate
    * @param declaredType the single checked exception type declared by the calling method
+   * @deprecated Use a combination of {@code #throwIfInstanceOf} and {@code #throwIfUnchecked},
+   *     which togther provide the same behavior except that they reject {@code null}.
    */
+  @Deprecated
   // propagateIfInstanceOf
   public static <X extends Throwable> void propagateIfPossible(
       @CheckForNull Throwable throwable, Class<X> declaredType) throws X {
@@ -167,13 +170,14 @@ public final class Throwables {
    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@code
    * RuntimeException}, {@code Error}, {@code declaredType1}, or {@code declaredType2}.
    *
-   * <p><b>Discouraged</b> in favor of calling {@code #throwIfInstanceOf} and {@code
-   * #throwIfUnchecked}.
-   *
    * @param throwable the Throwable to possibly propagate
    * @param declaredType1 any checked exception type declared by the calling method
    * @param declaredType2 any other checked exception type declared by the calling method
+   * @deprecated Use a combination of two calls to {@code #throwIfInstanceOf} and one call to {@code
+   *     #throwIfUnchecked}, which togther provide the same behavior except that they reject {@code
+   *     null}.
    */
+  @Deprecated
   // propagateIfInstanceOf
   public static <X1 extends Throwable, X2 extends Throwable> void propagateIfPossible(
       @CheckForNull Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
@@ -361,7 +365,6 @@ public final class Throwables {
    *     possible use the {@code java.lang.StackWalker.walk} method introduced in JDK 9.
    */
   @Deprecated
-  // lazyStackTraceIsLazy, jlaStackTrace
 
   public static List<StackTraceElement> lazyStackTrace(Throwable throwable) {
     return unmodifiableList(asList(throwable.getStackTrace()));

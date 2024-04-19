@@ -329,7 +329,7 @@ public final class Splitter {
    * <p>For example, {@code Splitter.on(',').limit(3).split("a,b,c,d")} returns an iterable
    * containing {@code ["a", "b", "c,d"]}. When omitting empty strings, the omitted strings do not
    * count. Hence, {@code Splitter.on(',').limit(3).omitEmptyStrings().split("a,,,b,,,c,d")} returns
-   * an iterable containing {@code ["a", "b", "c,d"}. When trim is requested, all entries are
+   * an iterable containing {@code ["a", "b", "c,d"]}. When trim is requested, all entries are
    * trimmed, including the last. Hence {@code Splitter.on(',').limit(3).trimResults().split(" a , b
    * , c , d ")} results in {@code ["a", "b", "c , d"]}.
    *
@@ -374,7 +374,7 @@ public final class Splitter {
   /**
    * Splits {@code sequence} into string components and makes them available through an {@code
    * Iterator}, which may be lazily evaluated. If you want an eagerly computed {@code List}, use
-   * {@code #splitToList(CharSequence)}. Java 8 users may prefer {@code #splitToStream} instead.
+   * {@code #splitToList(CharSequence)}. Java 8+ users may prefer {@code #splitToStream} instead.
    *
    * @param sequence the sequence of characters to split
    * @return an iteration over the segments split from the parameter
