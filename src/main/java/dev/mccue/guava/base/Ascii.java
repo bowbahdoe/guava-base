@@ -17,6 +17,7 @@ package dev.mccue.guava.base;
 import static dev.mccue.guava.base.Preconditions.checkArgument;
 import static dev.mccue.guava.base.Preconditions.checkNotNull;
 
+import java.nio.charset.StandardCharsets;
 
 /**
  * Static methods pertaining to ASCII characters (those in the range of values {@code 0x00} through
@@ -26,7 +27,7 @@ import static dev.mccue.guava.base.Preconditions.checkNotNull;
  *
  * <ul>
  *   <!-- TODO(kevinb): how can we make this not produce a warning when building gwt javadoc? -->
- *   <li>{@code Charsets#US_ASCII} specifies the {@code Charset} of ASCII characters.
+ *   <li>{@code StandardCharsets#US_ASCII} specifies the {@code Charset} of ASCII characters.
  *   <li>{@code CharMatcher#ascii} matches ASCII characters and provides text processing methods
  *       which operate only on the ASCII characters of a string.
  * </ul>

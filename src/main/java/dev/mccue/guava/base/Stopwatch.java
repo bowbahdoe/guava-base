@@ -218,7 +218,7 @@ public final class Stopwatch {
    * Returns the current elapsed time shown on this stopwatch as a {@code Duration}. Unlike {@code
    * #elapsed(TimeUnit)}, this method does not lose any precision due to rounding.
    *
-   * @since 22.0
+   * @since 22.0 (but only since 33.4.0 in the Android flavor)
    */
   public Duration elapsed() {
     return Duration.ofNanos(elapsedNanos());
@@ -274,8 +274,7 @@ public final class Stopwatch {
         return "h";
       case DAYS:
         return "d";
-      default:
-        throw new AssertionError();
     }
+    throw new AssertionError();
   }
 }

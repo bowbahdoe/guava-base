@@ -45,7 +45,7 @@ public final class Objects extends ExtraObjectsMethodsForWeb {
    * <p>This assumes that any non-null objects passed to this function conform to the {@code
    * equals()} contract.
    *
-   * <p><b>Java 7+ users:</b> This method should be treated as deprecated; use {@code
+   * <p><b>Note:</b> this method is now unnecessary and should be treated as deprecated; use {@code
    * java.util.Objects#equals} instead.
    */
   public static boolean equal(@CheckForNull Object a, @CheckForNull Object b) {
@@ -70,7 +70,7 @@ public final class Objects extends ExtraObjectsMethodsForWeb {
    * <p><b>Warning:</b> When a single object is supplied, the returned hash code does not equal the
    * hash code of that object.
    *
-   * <p><b>Java 7+ users:</b> This method should be treated as deprecated; use {@code
+   * <p><b>Note:</b> this method is now unnecessary and should be treated as deprecated; use {@code
    * java.util.Objects#hash} instead.
    */
   public static int hashCode(@CheckForNull @Nullable Object... objects) {

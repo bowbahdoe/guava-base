@@ -19,6 +19,8 @@ import static dev.mccue.guava.base.NullnessCasts.uncheckedCastNullableTToT;
 import static dev.mccue.guava.base.Preconditions.checkArgument;
 import static dev.mccue.guava.base.Preconditions.checkNotNull;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -115,6 +117,8 @@ public final class Suppliers {
   }
 
   static class MemoizingSupplier<T extends @Nullable Object> implements Supplier<T>, Serializable {
+    private transient Object lock = new Object();
+
     final Supplier<T> delegate;
     transient volatile boolean initialized;
     // "value" does not need to be volatile; visibility piggy-backs
@@ -127,10 +131,12 @@ public final class Suppliers {
 
     @Override
     @ParametricNullness
+    // We set the field only once (during construction or deserialization).
+    @SuppressWarnings("SynchronizeOnNonFinalField")
     public T get() {
       // A 2-field variant of Double Checked Locking.
       if (!initialized) {
-        synchronized (this) {
+        synchronized (lock) {
           if (!initialized) {
             T t = delegate.get();
             value = t;
@@ -150,10 +156,19 @@ public final class Suppliers {
           + ")";
     }
 
+    // serialization
+    // serialization
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+      in.defaultReadObject();
+      lock = new Object();
+    }
+
     private static final long serialVersionUID = 0;
   }
 
   static class NonSerializableMemoizingSupplier<T extends @Nullable Object> implements Supplier<T> {
+    private final Object lock = new Object();
+
     @SuppressWarnings("UnnecessaryLambda") // Must be a fixed singleton object
     private static final Supplier<Void> SUCCESSFULLY_COMPUTED =
         () -> {
@@ -174,7 +189,7 @@ public final class Suppliers {
     public T get() {
       // Because Supplier is read-heavy, we use the "double-checked locking" pattern.
       if (delegate != SUCCESSFULLY_COMPUTED) {
-        synchronized (this) {
+        synchronized (lock) {
           if (delegate != SUCCESSFULLY_COMPUTED) {
             T t = delegate.get();
             value = t;
@@ -247,7 +262,6 @@ public final class Suppliers {
    * @throws IllegalArgumentException if {@code duration} is not positive
    * @since 33.1.0
    */
-  // only until we're confident that Java 8+ APIs are safe for our Android users
   // java.time.Duration
   @SuppressWarnings("Java7ApiChecker") // no more dangerous that wherever the user got the Duration
   @IgnoreJRERequirement
@@ -263,6 +277,8 @@ public final class Suppliers {
   @SuppressWarnings("GoodTime") // lots of violations
   static class ExpiringMemoizingSupplier<T extends @Nullable Object>
       implements Supplier<T>, Serializable {
+    private transient Object lock = new Object();
+
     final Supplier<T> delegate;
     final long durationNanos;
     @CheckForNull transient volatile T value;
@@ -276,6 +292,8 @@ public final class Suppliers {
 
     @Override
     @ParametricNullness
+    // We set the field only once (during construction or deserialization).
+    @SuppressWarnings("SynchronizeOnNonFinalField")
     public T get() {
       // Another variant of Double Checked Locking.
       //
@@ -286,7 +304,7 @@ public final class Suppliers {
       long nanos = expirationNanos;
       long now = System.nanoTime();
       if (nanos == 0 || now - nanos >= 0) {
-        synchronized (this) {
+        synchronized (lock) {
           if (nanos == expirationNanos) { // recheck for lost race
             T t = delegate.get();
             value = t;
@@ -307,6 +325,13 @@ public final class Suppliers {
       // This is a little strange if the unit the user provided was not NANOS,
       // but we don't want to store the unit just for toString
       return "Suppliers.memoizeWithExpiration(" + delegate + ", " + durationNanos + ", NANOS)";
+    }
+
+    // serialization
+    // serialization
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+      in.defaultReadObject();
+      lock = new Object();
     }
 
     private static final long serialVersionUID = 0;

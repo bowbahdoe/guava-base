@@ -122,7 +122,7 @@ public abstract class Optional<T> implements Serializable {
    * Returns the equivalent {@code dev.mccue.guava.base.Optional} value to the given {@code
    * java.util.Optional}, or {@code null} if the argument is null.
    *
-   * @since 21.0
+   * @since 21.0 (but only since 33.4.0 in the Android flavor)
    */
   @CheckForNull
   public static <T> Optional<T> fromJavaUtil(@CheckForNull java.util.Optional<T> javaUtilOptional) {
@@ -140,8 +140,9 @@ public abstract class Optional<T> implements Serializable {
    * could refer to either the static or instance version of this method. Write out the lambda
    * expression {@code o -> Optional.toJavaUtil(o)} instead.
    *
-   * @since 21.0
+   * @since 21.0 (but only since 33.4.0 in the Android flavor)
    */
+  @SuppressWarnings("AmbiguousMethodReference") // We chose the name despite knowing this risk.
   @CheckForNull
   public static <T> java.util.Optional<T> toJavaUtil(@CheckForNull Optional<T> googleOptional) {
     return googleOptional == null ? null : googleOptional.toJavaUtil();
@@ -154,8 +155,9 @@ public abstract class Optional<T> implements Serializable {
    * could refer to either the static or instance version of this method. Write out the lambda
    * expression {@code o -> o.toJavaUtil()} instead.
    *
-   * @since 21.0
+   * @since 21.0 (but only since 33.4.0 in the Android flavor)
    */
+  @SuppressWarnings("AmbiguousMethodReference") // We chose the name despite knowing this risk.
   public java.util.Optional<T> toJavaUtil() {
     return java.util.Optional.ofNullable(orNull());
   }
